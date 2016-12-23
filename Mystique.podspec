@@ -9,14 +9,6 @@ Pod::Spec.new do |s|
   s.source   = { :git => 'https://github.com/gbammc/Mystique.git', :tag => s.version }
   s.requires_arc = true
   s.source_files = 'Mystique/*{.h,.c,.m}'
-
-  pch_AF = <<-EOS
-    #ifndef TARGET_OS_IOS
-        #define TARGET_OS_IOS TARGET_OS_IPHONE
-    #endif
-  EOS
-
   s.ios.frameworks = 'Foundation', 'UIKit'
-
   s.ios.deployment_target = '8.0'
 end

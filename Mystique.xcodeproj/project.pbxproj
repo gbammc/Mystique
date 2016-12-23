@@ -76,22 +76,22 @@
 		E16979421E0BC8830062BF70 /* Mystique */ = {
 			isa = PBXGroup;
 			children = (
-				E169794B1E0BC9230062BF70 /* CALayer+Mystique.h */,
-				E169794C1E0BC9230062BF70 /* CALayer+Mystique.m */,
-				E169794D1E0BC9230062BF70 /* MTAnimationGroup.h */,
-				E169794E1E0BC9230062BF70 /* MTAnimationGroup.m */,
 				E169794F1E0BC9230062BF70 /* MTAnimator.h */,
 				E16979501E0BC9230062BF70 /* MTAnimator.m */,
-				E16979511E0BC9230062BF70 /* MTAttribute.h */,
-				E16979521E0BC9230062BF70 /* MTChainableBlocks.h */,
+				E169794D1E0BC9230062BF70 /* MTAnimationGroup.h */,
+				E169794E1E0BC9230062BF70 /* MTAnimationGroup.m */,
 				E16979531E0BC9230062BF70 /* MTKeyframeAnimation.h */,
 				E16979541E0BC9230062BF70 /* MTKeyframeAnimation.m */,
-				E16979551E0BC9230062BF70 /* MTUtilities.h */,
 				E16979561E0BC9230062BF70 /* Mystique.h */,
-				E16979571E0BC9230062BF70 /* NSBKeyframeAnimationFunctions.c */,
-				E16979581E0BC9230062BF70 /* NSBKeyframeAnimationFunctions.h */,
+				E16979551E0BC9230062BF70 /* MTUtilities.h */,
+				E16979511E0BC9230062BF70 /* MTAttribute.h */,
+				E16979521E0BC9230062BF70 /* MTChainableBlocks.h */,
 				E16979591E0BC9230062BF70 /* UIView+Mystique.h */,
 				E169795A1E0BC9230062BF70 /* UIView+Mystique.m */,
+				E169794B1E0BC9230062BF70 /* CALayer+Mystique.h */,
+				E169794C1E0BC9230062BF70 /* CALayer+Mystique.m */,
+				E16979571E0BC9230062BF70 /* NSBKeyframeAnimationFunctions.c */,
+				E16979581E0BC9230062BF70 /* NSBKeyframeAnimationFunctions.h */,
 				E16979441E0BC8830062BF70 /* Info.plist */,
 			);
 			path = Mystique;
