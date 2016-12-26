@@ -1005,6 +1005,118 @@
     return group;
 }
 
+- (MTAnimationGroup *)fillColor
+{
+    MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeFillColor];
+    
+    if (nil != self.targetLayer && [self.targetLayer isKindOfClass:[CAShapeLayer class]]) {
+        
+        group.completionAction = MTLayerAnimationCompletionAction(layer, animation) {
+            UIColor *color = colorValueForAnimationCompletion(animation);
+            
+            CAShapeLayer *shapeLayer = (CAShapeLayer *)layer;
+            shapeLayer.fillColor = color.CGColor;
+        };
+        
+    }
+}
+
+- (MTAnimationGroup *)strokeColor
+{
+    MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeStrokeColor];
+    
+    if (nil != self.targetLayer && [self.targetLayer isKindOfClass:[CAShapeLayer class]]) {
+        
+        group.completionAction = MTLayerAnimationCompletionAction(layer, animation) {
+            UIColor *color = colorValueForAnimationCompletion(animation);
+            
+            CAShapeLayer *shapeLayer = (CAShapeLayer *)layer;
+            shapeLayer.strokeColor = color.CGColor;
+        };
+        
+    }
+}
+
+- (MTAnimationGroup *)strokeStart
+{
+    MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeStrokeStart];
+    
+    if (nil != self.targetLayer && [self.targetLayer isKindOfClass:[CAShapeLayer class]]) {
+        
+        group.completionAction = MTLayerAnimationCompletionAction(layer, animation) {
+            CGFloat f = floatValueForAnimationCompletion(animation);
+            
+            CAShapeLayer *shapeLayer = (CAShapeLayer *)layer;
+            shapeLayer.strokeStart = f;
+        };
+        
+    }
+}
+
+- (MTAnimationGroup *)strokeEnd
+{
+    MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeStrokeEnd];
+    
+    if (nil != self.targetLayer && [self.targetLayer isKindOfClass:[CAShapeLayer class]]) {
+        
+        group.completionAction = MTLayerAnimationCompletionAction(layer, animation) {
+            CGFloat f = floatValueForAnimationCompletion(animation);
+            
+            CAShapeLayer *shapeLayer = (CAShapeLayer *)layer;
+            shapeLayer.strokeEnd = f;
+        };
+        
+    }
+}
+
+- (MTAnimationGroup *)lineWidth
+{
+    MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeLineWidth];
+    
+    if (nil != self.targetLayer && [self.targetLayer isKindOfClass:[CAShapeLayer class]]) {
+        
+        group.completionAction = MTLayerAnimationCompletionAction(layer, animation) {
+            CGFloat f = floatValueForAnimationCompletion(animation);
+            
+            CAShapeLayer *shapeLayer = (CAShapeLayer *)layer;
+            shapeLayer.lineWidth = f;
+        };
+        
+    }
+}
+
+- (MTAnimationGroup *)miterLimit
+{
+    MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeMiterLimit];
+    
+    if (nil != self.targetLayer && [self.targetLayer isKindOfClass:[CAShapeLayer class]]) {
+        
+        group.completionAction = MTLayerAnimationCompletionAction(layer, animation) {
+            CGFloat f = floatValueForAnimationCompletion(animation);
+            
+            CAShapeLayer *shapeLayer = (CAShapeLayer *)layer;
+            shapeLayer.miterLimit = f;
+        };
+        
+    }
+}
+
+- (MTAnimationGroup *)lineDashPhase
+{
+    MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeLineDashPhase];
+    
+    if (nil != self.targetLayer && [self.targetLayer isKindOfClass:[CAShapeLayer class]]) {
+        
+        group.completionAction = MTLayerAnimationCompletionAction(layer, animation) {
+            CGFloat f = floatValueForAnimationCompletion(animation);
+            
+            CAShapeLayer *shapeLayer = (CAShapeLayer *)layer;
+            shapeLayer.lineDashPhase = f;
+        };
+        
+    }
+}
+
 #pragma mark - API
 
 - (void)animate:(void (^)(void))completion

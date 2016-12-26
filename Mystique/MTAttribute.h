@@ -10,6 +10,7 @@
 #define MTAttribute_h
 
 typedef NS_OPTIONS(NSUInteger, MTAttribute) {
+    //
     MTAttributeBounds = 0,
     MTAttributeSize,
     MTAttributeOrigin,
@@ -30,13 +31,22 @@ typedef NS_OPTIONS(NSUInteger, MTAttribute) {
     MTAttributeRotateX,
     MTAttributeRotateY,
     MTAttributeRotateZ,
+    MTAttributeBezierPath,
     
+    //
     MTAttributeXOffset,
     MTAttributeYOffset,
     MTAttributeWidthOffset,
     MTAttributeHeightOffset,
     
-    MTAttributeBezierPath,
+    // CAShapeLayer animatable
+    MTAttributeFillColor,
+    MTAttributeStrokeColor,
+    MTAttributeStrokeStart,
+    MTAttributeStrokeEnd,
+    MTAttributeLineWidth,
+    MTAttributeMiterLimit,
+    MTAttributeLineDashPhase,
 };
 
 #endif /* MTAttribute_h */

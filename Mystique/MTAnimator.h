@@ -46,6 +46,14 @@
 @property (nonatomic, strong, readonly) MTAnimationGroup *rotateOnPath;
 @property (nonatomic, strong, readonly) MTAnimationGroup *reverseRotateOnPath;
 
+@property (nonatomic, strong, readonly) MTAnimationGroup *fillColor;
+@property (nonatomic, strong, readonly) MTAnimationGroup *strokeColor;
+@property (nonatomic, strong, readonly) MTAnimationGroup *strokeStart;
+@property (nonatomic, strong, readonly) MTAnimationGroup *strokeEnd;
+@property (nonatomic, strong, readonly) MTAnimationGroup *lineWidth;
+@property (nonatomic, strong, readonly) MTAnimationGroup *miterLimit;
+@property (nonatomic, strong, readonly) MTAnimationGroup *lineDashPhase;
+
 - (instancetype)initWithView:(UIView *)view;
 - (instancetype)initWithLayer:(CALayer *)layer;
 
