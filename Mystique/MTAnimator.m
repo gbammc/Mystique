@@ -1018,6 +1018,8 @@
             shapeLayer.fillColor = color.CGColor;
         };
         
+    } else {
+        NSAssert(NO, @"This attribute should be used by CAShapeLayer");
     }
 }
 
@@ -1033,7 +1035,9 @@
             CAShapeLayer *shapeLayer = (CAShapeLayer *)layer;
             shapeLayer.strokeColor = color.CGColor;
         };
-        
+     
+    } else {
+        NSAssert(NO, @"This attribute should be used by CAShapeLayer");
     }
 }
 
@@ -1066,6 +1070,8 @@
             shapeLayer.strokeEnd = f;
         };
         
+    } else {
+        NSAssert(NO, @"This attribute should be used by CAShapeLayer");
     }
 }
 
@@ -1082,6 +1088,8 @@
             shapeLayer.lineWidth = f;
         };
         
+    } else {
+        NSAssert(NO, @"This attribute should be used by CAShapeLayer");
     }
 }
 
@@ -1098,6 +1106,8 @@
             shapeLayer.miterLimit = f;
         };
         
+    } else {
+        NSAssert(NO, @"This attribute should be used by CAShapeLayer");
     }
 }
 
@@ -1114,6 +1124,8 @@
             shapeLayer.lineDashPhase = f;
         };
         
+    } else {
+        NSAssert(NO, @"This attribute should be used by CAShapeLayer");
     }
 }
 

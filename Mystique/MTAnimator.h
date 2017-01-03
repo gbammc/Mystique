@@ -15,6 +15,7 @@
 
 @property (nonatomic, assign) BOOL logEnable;
 
+// Animatable attributes
 @property (nonatomic, strong, readonly) MTAnimationGroup *bounds;
 @property (nonatomic, strong, readonly) MTAnimationGroup *size;
 @property (nonatomic, strong, readonly) MTAnimationGroup *origin;
@@ -37,15 +38,18 @@
 @property (nonatomic, strong, readonly) MTAnimationGroup *rotateZ;
 @property (nonatomic, strong, readonly) MTAnimationGroup *rotate;
 
+// Change
 @property (nonatomic, strong, readonly) MTAnimationGroup *xOffset;
 @property (nonatomic, strong, readonly) MTAnimationGroup *yOffset;
 @property (nonatomic, strong, readonly) MTAnimationGroup *widthOffset;
 @property (nonatomic, strong, readonly) MTAnimationGroup *heightOffset;
 
+// Bezier Paths
 @property (nonatomic, strong, readonly) MTAnimationGroup *path;
 @property (nonatomic, strong, readonly) MTAnimationGroup *rotateOnPath;
 @property (nonatomic, strong, readonly) MTAnimationGroup *reverseRotateOnPath;
 
+// The attributes below should be used by CAShapeLayer.
 @property (nonatomic, strong, readonly) MTAnimationGroup *fillColor;
 @property (nonatomic, strong, readonly) MTAnimationGroup *strokeColor;
 @property (nonatomic, strong, readonly) MTAnimationGroup *strokeStart;
