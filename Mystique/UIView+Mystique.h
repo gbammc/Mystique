@@ -12,8 +12,19 @@
 
 @interface UIView (Mystique)
 
-- (void)startAnimations:(void(^)(MTAnimator *animate))block;
+/**
+ Creates a MTAnimator to build up animations
 
-- (void)startAnimations:(void(^)(MTAnimator *animate))block completion:(MTAnimationCompletion)completion;
+ @param block scope within which you can build up animations which you wish to apply to the view.
+ */
+- (void)mt_startAnimations:(void(^)(MTAnimator *animate))block;
+
+/**
+ Creates a MTAnimator to build up animations
+
+ @param block scope within which you can build up animations which you wish to apply to the view.
+ @param completion executed when the animation sequence ends.
+ */
+- (void)mt_startAnimations:(void(^)(MTAnimator *animate))block completion:(MTAnimationCompletion)completion;
 
 @end

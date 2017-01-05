@@ -32,7 +32,7 @@
     
     CGRect oriFrame = self.demoView.frame;
     
-    [self.demoView startAnimations:^(MTAnimator *animate) {
+    [self.demoView mt_startAnimations:^(MTAnimator *animate) {
         
         animate.xOffset.easeIn.to(@200).animate(1);
         animate.rotate.delay(0.3).to(@180).animate(0.4);
@@ -44,7 +44,7 @@
         self.demoView.frame = oriFrame;
         self.demoView.backgroundColor = [UIColor blueColor];
         
-        [self.demoView startAnimations:^(MTAnimator *animate) {
+        [self.demoView mt_startAnimations:^(MTAnimator *animate) {
             
             animate.opacity.to(@1.0).animate(0.3);
             
@@ -92,7 +92,7 @@
             
             [self.view.layer insertSublayer:radiation atIndex:0];
             
-            [radiation startAnimations:^(MTAnimator *animate) {
+            [radiation mt_startAnimations:^(MTAnimator *animate) {
                 animate.opacity
                     .from(@1.0)
                     .to(@0.0)
@@ -123,7 +123,7 @@
         
         [self.view.layer insertSublayer:circle atIndex:0];
         
-        [circle startAnimations:^(MTAnimator *animate) {
+        [circle mt_startAnimations:^(MTAnimator *animate) {
             animate.scale
                 .byValues(@[@0.8, @(scale), @(scale)])
                 .during(@[@0.0, @0.5, @.1])

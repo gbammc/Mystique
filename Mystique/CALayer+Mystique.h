@@ -12,8 +12,19 @@
 
 @interface CALayer (Mystique)
 
-- (void)startAnimations:(void(^)(MTAnimator *animate))block;
+/**
+ Creates a MTAnimator to build up animations
+ 
+ @param block scope within which you can build up animations which you wish to apply to the layer.
+ */
+- (void)mt_startAnimations:(void(^)(MTAnimator *animate))block;
 
-- (void)startAnimations:(void(^)(MTAnimator *animate))block completion:(MTAnimationCompletion)completion;
+/**
+ Creates a MTAnimator to build up animations
+ 
+ @param block scope within which you can build up animations which you wish to apply to the layer.
+ @param completion executed when the animation sequence ends.
+ */
+- (void)mt_startAnimations:(void(^)(MTAnimator *animate))block completion:(MTAnimationCompletion)completion;
 
 @end

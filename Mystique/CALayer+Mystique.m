@@ -10,12 +10,12 @@
 
 @implementation CALayer (Mystique)
 
-- (void)startAnimations:(void (^)(MTAnimator *))block
+- (void)mt_startAnimations:(void (^)(MTAnimator *))block
 {
-    [self startAnimations:block completion:nil];
+    [self mt_startAnimations:block completion:nil];
 }
 
-- (void)startAnimations:(void (^)(MTAnimator *))block completion:(MTAnimationCompletion)completion
+- (void)mt_startAnimations:(void (^)(MTAnimator *))block completion:(MTAnimationCompletion)completion
 {
     MTAnimator *animator = [[MTAnimator alloc] initWithLayer:self];
     block(animator);
