@@ -42,11 +42,11 @@
 
 #pragma mark - Makers
 
-- (MTGroupChainableFloat)from
+- (MTGroupChainableValue)from
 {
-    return MTGroupChainableFloat(f) {
+    return MTGroupChainableValue(v) {
         MTKeyframeAnimation *animation = self.keyframeAnimations.lastObject;
-        animation.from(f);
+        animation.from(v);
         
         return self;
     };
@@ -56,7 +56,8 @@
 {
     return MTGroupChainableSize(width, height) {
         MTKeyframeAnimation *animation = self.keyframeAnimations.lastObject;
-        animation.fromSize(width, height);
+        id value = MTBoxValue(CGSizeMake(width, height));
+        animation.from(value);
         
         return self;
     };
@@ -66,7 +67,8 @@
 {
     return MTGroupChainablePoint(x, y) {
         MTKeyframeAnimation *animation = self.keyframeAnimations.lastObject;
-        animation.fromPoint(x, y);
+        id value = MTBoxValue(CGPointMake(x, y));
+        animation.from(value);
         
         return self;
     };
@@ -76,7 +78,8 @@
 {
     return MTGroupChainableRect(rect) {
         MTKeyframeAnimation *animation = self.keyframeAnimations.lastObject;
-        animation.fromRect(rect);
+        id value = MTBoxValue(rect);
+        animation.from(value);
         
         return self;
     };
@@ -86,17 +89,17 @@
 {
     return MTGroupChainableColor(color) {
         MTKeyframeAnimation *animation = self.keyframeAnimations.lastObject;
-        animation.fromColor(color);
+        animation.from(color);
         
         return self;
     };
 }
 
-- (MTGroupChainableFloat)to
+- (MTGroupChainableValue)to
 {
-    return MTGroupChainableFloat(f) {
+    return MTGroupChainableValue(v) {
         MTKeyframeAnimation *animation = self.keyframeAnimations.lastObject;
-        animation.to(f);
+        animation.to(v);
         
         return self;
     };
@@ -106,7 +109,8 @@
 {
     return MTGroupChainableSize(width, height) {
         MTKeyframeAnimation *animation = self.keyframeAnimations.lastObject;
-        animation.toSize(width, height);
+        id value = MTBoxValue(CGSizeMake(width, height));
+        animation.to(value);
         
         return self;
     };
@@ -116,7 +120,8 @@
 {
     return MTGroupChainablePoint(x, y) {
         MTKeyframeAnimation *animation = self.keyframeAnimations.lastObject;
-        animation.toPoint(x, y);
+        id value = MTBoxValue(CGPointMake(x, y));
+        animation.to(value);
         
         return self;
     };
@@ -126,7 +131,8 @@
 {
     return MTGroupChainableRect(rect) {
         MTKeyframeAnimation *animation = self.keyframeAnimations.lastObject;
-        animation.toRect(rect);
+        id value = MTBoxValue(rect);
+        animation.to(value);
         
         return self;
     };
@@ -136,7 +142,7 @@
 {
     return MTGroupChainableColor(color){
         MTKeyframeAnimation *animation = self.keyframeAnimations.lastObject;
-        animation.toColor(color);
+        animation.to(color);
         
         return self;
     };
@@ -146,7 +152,7 @@
 {
     return MTGroupChainableBezierPath(path){
         MTKeyframeAnimation *animation = self.keyframeAnimations.lastObject;
-        animation.toPath(path);
+        animation.to(path);
         
         return self;
     };

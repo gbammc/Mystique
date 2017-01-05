@@ -34,10 +34,10 @@
 
 #pragma mark - Maker
 
-- (MTChainableFloat)from
+- (MTChainableValue)from
 {
-    return MTChainableFloat(f) {
-        id value = MTBoxValue(f);
+    return MTChainableValue(v) {
+        id value = MTBoxValue(v);
         value = [self fromValueCheck:value];
         
         self.fromValue = value;
@@ -46,122 +46,13 @@
     };
 }
 
-- (MTChainableSize)fromSize
+- (MTChainableValue)to
 {
-    return MTChainableSize(width, height) {
-        CGSize size = CGSizeMake(width, height);
-        id value = MTBoxValue(size);
-        value = [self fromValueCheck:value];
-        
-        self.fromValue = value;
-        
-        return self;
-    };
-}
-
-- (MTChainableRect)fromRect
-{
-    return MTChainableRect(rect) {
-        id value = MTBoxValue(rect);
-        value = [self fromValueCheck:value];
-        
-        self.fromValue = value;
-        
-        return self;
-    };
-}
-
-- (MTChainablePoint)fromPoint
-{
-    return MTChainablePoint(x, y) {
-        CGPoint point = CGPointMake(x, y);
-        id value = MTBoxValue(point);
-        value = [self fromValueCheck:value];
-        
-        self.fromValue = value;
-        
-        return self;
-    };
-}
-
-- (MTChainableColor)fromColor
-{
-    return MTChainableColor(color) {
-        id value = MTBoxValue(color);
-        value = [self fromValueCheck:value];
-        
-        self.fromValue = value;
-        
-        return self;
-    };
-}
-
-- (MTChainableFloat)to
-{
-    return MTChainableFloat(f) {
-        id value = MTBoxValue(f);
+    return MTChainableValue(v) {
+        id value = MTBoxValue(v);
         value = [self toValueCheck:value];
         
         self.toValue = value;
-        
-        return self;
-    };
-}
-
-- (MTChainableSize)toSize
-{
-    return MTChainableSize(width, height) {
-        CGSize size = CGSizeMake(width, height);
-        id value = MTBoxValue(size);
-        value = [self toValueCheck:value];
-        
-        self.toValue = value;
-        
-        return self;
-    };
-}
-
-- (MTChainableRect)toRect
-{
-    return MTChainableRect(rect) {
-        id value = MTBoxValue(rect);
-        value = [self toValueCheck:value];
-        
-        self.toValue = value;
-        
-        return self;
-    };
-}
-
-- (MTChainablePoint)toPoint
-{
-    return MTChainablePoint(x, y) {
-        CGPoint point = CGPointMake(x, y);
-        id value = MTBoxValue(point);
-        value = [self toValueCheck:value];
-        
-        self.toValue = value;
-        
-        return self;
-    };
-}
-
-- (MTChainableColor)toColor
-{
-    return MTChainableColor(color) {
-        id value = MTBoxValue(color);
-        value = [self toValueCheck:value];
-        
-        self.toValue = value;
-        
-        return self;
-    };
-}
-
-- (MTChainableBezierPath)toPath
-{
-    return MTChainableBezierPath(path) {
-        self.path = path.CGPath;
         
         return self;
     };
@@ -537,6 +428,14 @@
         case MTAttributeHeightOffset:       return @"bounds.size.height";
             
         case MTAttributeBezierPath:         return @"position";
+            
+        case MTAttributeFillColor:          return @"fillColor";
+        case MTAttributeStrokeColor:        return @"strokeColor";
+        case MTAttributeStrokeStart:        return @"strokeStart";
+        case MTAttributeStrokeEnd:          return @"strokeEnd";
+        case MTAttributeLineWidth:          return @"lineWidth";
+        case MTAttributeMiterLimit:         return @"miterLimit";
+        case MTAttributeLineDashPhase:      return @"lineDashPhase";
     }
 }
 

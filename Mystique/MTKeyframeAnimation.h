@@ -27,18 +27,8 @@
 
 // Makers
 
-- (MTChainableFloat)from;
-- (MTChainableSize)fromSize;
-- (MTChainableRect)fromRect;
-- (MTChainablePoint)fromPoint;
-- (MTChainableColor)fromColor;
-
-- (MTChainableFloat)to;
-- (MTChainableSize)toSize;
-- (MTChainableRect)toRect;
-- (MTChainablePoint)toPoint;
-- (MTChainableColor)toColor;
-- (MTChainableBezierPath)toPath;
+- (MTChainableValue)from;
+- (MTChainableValue)to;
 
 - (MTChainableValues)byValues;
 - (MTChainableValues)during;

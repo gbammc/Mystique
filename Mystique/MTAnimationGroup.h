@@ -22,18 +22,22 @@
 
 // Makers
 
-- (MTGroupChainableFloat)from;
+- (MTGroupChainableValue)from;
 - (MTGroupChainableSize)fromSize;
 - (MTGroupChainablePoint)fromPoint;
 - (MTGroupChainableRect)fromRect;
 - (MTGroupChainableColor)fromColor;
 
-- (MTGroupChainableFloat)to;
+#define mt_from(...) from(MTBoxValue((__VA_ARGS__)))
+
+- (MTGroupChainableValue)to;
 - (MTGroupChainableSize)toSize;
 - (MTGroupChainablePoint)toPoint;
 - (MTGroupChainableRect)toRect;
 - (MTGroupChainableColor)toColor;
 - (MTGroupChainableBezierPath)toPath;
+
+#define mt_to(...) to(MTBoxValue((__VA_ARGS__)))
 
 - (MTGroupChainableValues)byValues;
 - (MTGroupChainableValues)during;

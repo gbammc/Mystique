@@ -34,19 +34,19 @@
     
     [self.demoView startAnimations:^(MTAnimator *animate) {
         
-        animate.xOffset.easeIn.to(200).animate(1);
-        animate.rotate.delay(0.3).to(180).animate(0.4);
+        animate.xOffset.easeIn.to(@200).animate(1);
+        animate.rotate.delay(0.3).to(@180).animate(0.4);
         animate.backgroundColor.toColor([UIColor redColor]).after(0.4).delay(0.2).toColor([UIColor yellowColor]).animate(0.4);
-        animate.opacity.delay(1.0).to(0.0).animate(2);
+        animate.opacity.delay(1.0).to(@0.0).animate(2);
         
     } completion:^{
         
         self.demoView.frame = oriFrame;
         self.demoView.backgroundColor = [UIColor blueColor];
-    
+        
         [self.demoView startAnimations:^(MTAnimator *animate) {
             
-            animate.opacity.to(1.0).animate(0.3);
+            animate.opacity.to(@1.0).animate(0.3);
             
         } completion:^{
            
@@ -69,6 +69,15 @@
         CGFloat radiationToRadius = (self.imageView.frame.size.width * scale) * 0.5;
         
         for (NSInteger i = 0; i < 8; i++) {
+            CGPoint fromPoint = (CGPoint){
+                .x = self.imageView.center.x + sin(M_PI_4 * i) * radiationFromRadius,
+                .y = self.imageView.center.y + cos(M_PI_4 * i) * radiationFromRadius
+            };
+            CGPoint toPoint = (CGPoint){
+                .x = self.imageView.center.x + sin(M_PI_4 * i) * radiationToRadius,
+                .y = self.imageView.center.y + cos(M_PI_4 * i) * radiationToRadius
+            };
+            
             UIBezierPath *radiationPath = [UIBezierPath bezierPath];
             [radiationPath moveToPoint:CGPointZero];
             [radiationPath addLineToPoint:CGPointMake(0, radiationLength)];
@@ -85,16 +94,16 @@
             
             [radiation startAnimations:^(MTAnimator *animate) {
                 animate.opacity
-                    .from(1.0)
-                    .to(0.0)
+                    .from(@1.0)
+                    .to(@0.0)
                     .animate(duration);
                 animate.scale
-                    .from(1.0)
-                    .to(0.0)
+                    .from(@1.0)
+                    .to(@0.0)
                     .animate(duration);
                 animate.center
-                    .fromPoint(self.imageView.center.x + sin(M_PI_4 * i) * radiationFromRadius, self.imageView.center.y + cos(M_PI_4 * i) * radiationFromRadius)
-                    .toPoint(self.imageView.center.x + sin(M_PI_4 * i) * radiationToRadius, self.imageView.center.y + cos(M_PI_4 * i) * radiationToRadius)
+                    .mt_from(fromPoint)
+                    .mt_to(toPoint)
                     .animate(duration);
             } completion:^{
                 [radiation removeFromSuperlayer];
@@ -120,8 +129,8 @@
                 .during(@[@0.0, @0.5, @.1])
                 .animate(duration);
             animate.opacity
-                .from(0.5)
-                .to(0.0)
+                .from(@0.5)
+                .to(@0.0)
                 .animate(duration);
         } completion:^{
             [circle removeFromSuperlayer];

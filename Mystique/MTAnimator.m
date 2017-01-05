@@ -188,8 +188,8 @@
     if (nil != self.targetView) {
         
         CGFloat x = self.targetView.layer.position.x;
-        group.from(x);
-        group.to(x);
+        group.mt_from(x);
+        group.mt_to(x);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             CGFloat x = floatValueForAnimationCompletion(animation);
             CGPoint position = view.layer.position;
@@ -201,8 +201,8 @@
     } else if (nil != self.targetLayer) {
         
         CGFloat x = self.targetLayer.position.x;
-        group.from(x);
-        group.to(x);
+        group.mt_from(x);
+        group.mt_to(x);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGFloat x = floatValueForAnimationCompletion(animation);
             CGPoint position = layer.position;
@@ -224,8 +224,8 @@
     if (nil != self.targetView) {
         
         CGFloat y = self.targetView.layer.position.y;
-        group.from(y);
-        group.to(y);
+        group.mt_from(y);
+        group.mt_to(y);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             CGFloat y = floatValueForAnimationCompletion(animation);
             CGPoint position = view.layer.position;
@@ -237,8 +237,8 @@
     } else if (nil != self.targetLayer) {
         
         CGFloat y = self.targetLayer.position.y;
-        group.from(y);
-        group.to(y);
+        group.mt_from(y);
+        group.mt_to(y);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGFloat y = floatValueForAnimationCompletion(animation);
             CGPoint position = layer.position;
@@ -260,8 +260,8 @@
     if (nil != self.targetView) {
         
         CGFloat width = self.targetView.layer.bounds.size.width;
-        group.from(width);
-        group.to(width);
+        group.mt_from(width);
+        group.mt_to(width);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             CGFloat width = floatValueForAnimationCompletion(animation);
             CGRect bounds = CGRectMake(0, 0, width, view.bounds.size.height);
@@ -273,8 +273,8 @@
     } else if (nil != self.targetLayer) {
         
         CGFloat width = self.targetLayer.bounds.size.width;
-        group.from(width);
-        group.to(width);
+        group.mt_from(width);
+        group.mt_to(width);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGFloat width = floatValueForAnimationCompletion(animation);
             CGRect bounds = CGRectMake(0, 0, width, layer.bounds.size.height);
@@ -295,8 +295,8 @@
     if (nil != self.targetView) {
         
         CGFloat height = self.targetView.layer.bounds.size.height;
-        group.from(height);
-        group.to(height);
+        group.mt_from(height);
+        group.mt_to(height);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             CGFloat height = floatValueForAnimationCompletion(animation);
             CGRect bounds = CGRectMake(0, 0, view.bounds.size.width, height);
@@ -308,8 +308,8 @@
     } else if (nil != self.targetLayer) {
         
         CGFloat height = self.targetLayer.bounds.size.height;
-        group.from(height);
-        group.to(height);
+        group.mt_from(height);
+        group.mt_to(height);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGFloat height = floatValueForAnimationCompletion(animation);
             CGRect bounds = CGRectMake(0, 0, layer.bounds.size.width, height);
@@ -329,8 +329,8 @@
     if (nil != self.targetView) {
         
         CGFloat alpha = self.targetView.alpha;
-        group.from(alpha);
-        group.to(alpha);
+        group.mt_from(alpha);
+        group.mt_to(alpha);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             CGFloat opacity = floatValueForAnimationCompletion(animation);
             view.layer.opacity = opacity;
@@ -339,8 +339,8 @@
     } else if (nil != self.targetLayer) {
         
         CGFloat opacity = self.targetLayer.opacity;
-        group.from(opacity);
-        group.to(opacity);
+        group.mt_from(opacity);
+        group.mt_to(opacity);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGFloat opacity = floatValueForAnimationCompletion(animation);
             layer.opacity = opacity;
@@ -423,8 +423,8 @@
     if (nil != self.targetView) {
         
         CGFloat borderWidth = self.targetView.layer.borderWidth;
-        group.from(borderWidth);
-        group.to(borderWidth);
+        group.mt_from(borderWidth);
+        group.mt_to(borderWidth);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             CGFloat borderWidth = floatValueForAnimationCompletion(animation);
             
@@ -434,8 +434,8 @@
     } else if (nil != self.targetLayer) {
         
         CGFloat borderWidth = self.targetLayer.borderWidth;
-        group.from(borderWidth);
-        group.to(borderWidth);
+        group.mt_from(borderWidth);
+        group.mt_to(borderWidth);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGFloat borderWidth = floatValueForAnimationCompletion(animation);
             
@@ -455,8 +455,8 @@
     if (nil != self.targetView) {
         
         CGFloat cornerRadius = self.targetView.layer.cornerRadius;
-        group.from(cornerRadius);
-        group.to(cornerRadius);
+        group.mt_from(cornerRadius);
+        group.mt_to(cornerRadius);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             CGFloat cornerRadius = floatValueForAnimationCompletion(animation);
             
@@ -466,8 +466,8 @@
     } else if (nil != self.targetLayer) {
         
         CGFloat cornerRadius = self.targetLayer.cornerRadius;
-        group.from(cornerRadius);
-        group.to(cornerRadius);
+        group.mt_from(cornerRadius);
+        group.mt_to(cornerRadius);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGFloat cornerRadius = floatValueForAnimationCompletion(animation);
             
@@ -674,8 +674,8 @@
         
         self.targetView.layer.allowsEdgeAntialiasing = YES;
         
-        group.from(0.0);
-        group.to(0.0);
+        group.mt_from(0.0);
+        group.mt_to(0.0);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             CGFloat value = floatValueForAnimationCompletion(animation);
             
@@ -686,8 +686,8 @@
         
         self.targetLayer.allowsEdgeAntialiasing = YES;
         
-        group.from(0.0);
-        group.to(0.0);
+        group.mt_from(0.0);
+        group.mt_to(0.0);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGFloat value = floatValueForAnimationCompletion(animation);
             
@@ -707,8 +707,8 @@
         
         self.targetView.layer.allowsEdgeAntialiasing = YES;
         
-        group.from(0.0);
-        group.to(0.0);
+        group.mt_from(0.0);
+        group.mt_to(0.0);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             CGFloat value = floatValueForAnimationCompletion(animation);
             
@@ -719,8 +719,8 @@
         
         self.targetLayer.allowsEdgeAntialiasing = YES;
         
-        group.from(0.0);
-        group.to(0.0);
+        group.mt_from(0.0);
+        group.mt_to(0.0);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGFloat value = floatValueForAnimationCompletion(animation);
             
@@ -740,8 +740,8 @@
         
         self.targetView.layer.allowsEdgeAntialiasing = YES;
         
-        group.from(0.0);
-        group.to(0.0);
+        group.mt_from(0.0);
+        group.mt_to(0.0);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             CGFloat value = floatValueForAnimationCompletion(animation);
             
@@ -752,8 +752,8 @@
         
         self.targetLayer.allowsEdgeAntialiasing = YES;
         
-        group.from(0.0);
-        group.to(0.0);
+        group.mt_from(0.0);
+        group.mt_to(0.0);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGFloat value = floatValueForAnimationCompletion(animation);
             
@@ -778,8 +778,8 @@
         
         CGFloat x = self.targetView.layer.position.x;
         
-        group.from(x);
-        group.to(x);
+        group.mt_from(x);
+        group.mt_to(x);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             CGFloat x = floatValueForAnimationCompletion(animation);
             CGPoint position = view.layer.position;
@@ -792,8 +792,8 @@
         
         CGFloat x = self.targetLayer.position.x;
         
-        group.from(x);
-        group.to(x);
+        group.mt_from(x);
+        group.mt_to(x);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGFloat x = floatValueForAnimationCompletion(animation);
             CGPoint position = layer.position;
@@ -815,8 +815,8 @@
         
         CGFloat y = self.targetView.layer.position.y;
         
-        group.from(y);
-        group.to(y);
+        group.mt_from(y);
+        group.mt_to(y);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             CGFloat y = floatValueForAnimationCompletion(animation);
             CGPoint position = view.layer.position;
@@ -829,8 +829,8 @@
         
         CGFloat y = self.targetLayer.position.y;
         
-        group.from(y);
-        group.to(y);
+        group.mt_from(y);
+        group.mt_to(y);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGFloat y = floatValueForAnimationCompletion(animation);
             CGPoint position = layer.position;
@@ -852,8 +852,8 @@
         
         CGSize size = self.targetView.layer.bounds.size;
         
-        group.from(size.width);
-        group.to(size.width);
+        group.mt_from(size.width);
+        group.mt_to(size.width);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             CGFloat width = floatValueForAnimationCompletion(animation);
             CGRect bounds = CGRectMake(0, 0, width, view.bounds.size.height);
@@ -866,8 +866,8 @@
         
         CGSize size = self.targetLayer.bounds.size;
         
-        group.from(size.width);
-        group.to(size.width);
+        group.mt_from(size.width);
+        group.mt_to(size.width);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGFloat width = floatValueForAnimationCompletion(animation);
             CGRect bounds = CGRectMake(0, 0, width, layer.bounds.size.height);
@@ -888,8 +888,8 @@
         
         CGSize size = self.targetView.layer.bounds.size;
         
-        group.from(size.height);
-        group.to(size.height);
+        group.mt_from(size.height);
+        group.mt_to(size.height);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             CGFloat width = floatValueForAnimationCompletion(animation);
             CGRect bounds = CGRectMake(0, 0, view.bounds.size.width, width);
@@ -902,8 +902,8 @@
         
         CGSize size = self.targetLayer.bounds.size;
         
-        group.from(size.height);
-        group.to(size.height);
+        group.mt_from(size.height);
+        group.mt_to(size.height);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGFloat width = floatValueForAnimationCompletion(animation);
             CGRect bounds = CGRectMake(0, 0, layer.bounds.size.width, width);
@@ -1021,6 +1021,8 @@
     } else {
         NSAssert(NO, @"This attribute should be used by CAShapeLayer");
     }
+    
+    return group;
 }
 
 - (MTAnimationGroup *)strokeColor
@@ -1039,6 +1041,8 @@
     } else {
         NSAssert(NO, @"This attribute should be used by CAShapeLayer");
     }
+    
+    return group;
 }
 
 - (MTAnimationGroup *)strokeStart
@@ -1055,6 +1059,8 @@
         };
         
     }
+    
+    return group;
 }
 
 - (MTAnimationGroup *)strokeEnd
@@ -1073,6 +1079,8 @@
     } else {
         NSAssert(NO, @"This attribute should be used by CAShapeLayer");
     }
+    
+    return group;
 }
 
 - (MTAnimationGroup *)lineWidth
@@ -1091,6 +1099,8 @@
     } else {
         NSAssert(NO, @"This attribute should be used by CAShapeLayer");
     }
+    
+    return group;
 }
 
 - (MTAnimationGroup *)miterLimit
@@ -1109,6 +1119,8 @@
     } else {
         NSAssert(NO, @"This attribute should be used by CAShapeLayer");
     }
+    
+    return group;
 }
 
 - (MTAnimationGroup *)lineDashPhase
@@ -1127,6 +1139,8 @@
     } else {
         NSAssert(NO, @"This attribute should be used by CAShapeLayer");
     }
+    
+    return group;
 }
 
 #pragma mark - API
