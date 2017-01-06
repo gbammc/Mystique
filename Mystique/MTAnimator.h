@@ -38,7 +38,6 @@
 @property (nonatomic, strong, readonly) MTAnimationGroup *rotateZ;
 @property (nonatomic, strong, readonly) MTAnimationGroup *rotate;
 
-// Change
 @property (nonatomic, strong, readonly) MTAnimationGroup *xOffset;
 @property (nonatomic, strong, readonly) MTAnimationGroup *yOffset;
 @property (nonatomic, strong, readonly) MTAnimationGroup *widthOffset;

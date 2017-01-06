@@ -125,8 +125,8 @@
         
         [circle mt_startAnimations:^(MTAnimator *animate) {
             animate.scale
-                .byValues(@[@0.8, @(scale), @(scale)])
-                .during(@[@0.0, @0.5, @.1])
+                .byValues(@[ @0.8, @(scale), @(scale) ])
+                .during(@[ @0.0, @0.5, @1.0 ])
                 .animate(duration);
             animate.opacity
                 .from(@0.5)
@@ -136,6 +136,11 @@
             [circle removeFromSuperlayer];
         }];
     }
+    
+    CAKeyframeAnimation *keyframeAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
+    keyframeAnimation.values = @[ @0.0, @1.1, @1.0 ];
+    keyframeAnimation.keyTimes = @[ @0.0, @0.5, @1.0 ];
+    keyframeAnimation.duration = duration;
 }
 
 @end
