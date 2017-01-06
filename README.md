@@ -35,7 +35,7 @@ To implement above layer effect, all you need to write down:
 [circle mt_startAnimations:^(MTAnimator *animate) {
     animate.scale
         .byValues(@[@0.8, @(scale), @(scale)])
-        .during(@[@0.0, @0.5, @.1])
+        .during(@[@0.0, @0.5, @1.0])
         .animate(duration);
     animate.opacity
         .from(@0.5)
@@ -139,8 +139,10 @@ animate.x.to(@50).after(1.0).to(@200).animate(2.0)
 To delay an animation call the __delay(duration)__ function.
 
 ```objective-c
-animate.opacity.to(@0.0).after(1.0).delay(2.0).to(@1.0).animate(1.0)
 // it will disappear in one second and appear again after two second delay
+animate.opacity
+    .to(@0.0).after(1.0)
+    .delay(2.0).to(@1.0).animate(1.0)
 ```
 
 #### Repeat and autoreverse
@@ -165,11 +167,20 @@ keyframeAnimation.duration = duration;
 */
 ```
 
+### Debug
+
+Set ```logEnable``` to ```YES``` will print all animations details for you to debug.
+
+```objective-c
+animate.logEnable = YES
+```
+
 ## Credit
 
 Thanks their incredible works!
 
 [JHChainableAnimations](https://github.com/jhurray/JHChainableAnimations)
+
 [Masonry](https://github.com/SnapKit/Masonry)
 
 ## License
