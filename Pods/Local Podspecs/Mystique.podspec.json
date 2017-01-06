@@ -1,6 +1,6 @@
 {
   "name": "Mystique",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "summary": "Helpers to create awsome animations.",
   "homepage": "https://github.com/gbammc/Mystique",
@@ -10,7 +10,7 @@
   "social_media_url": "https://twitter.com/alvin_zhu",
   "source": {
     "git": "https://github.com/gbammc/Mystique.git",
-    "tag": "0.1.0"
+    "tag": "0.2.0"
   },
   "requires_arc": true,
   "source_files": "Mystique/*{.h,.c,.m}",
@@ -21,6 +21,6 @@
     ]
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "7.0"
   }
 }
