@@ -211,18 +211,16 @@
 - (MTGroupChainableTimeInterval)after
 {
     return MTGroupChainableTimeInterval(i) {
-        MTKeyframeAnimation *animation = nil;
+        MTKeyframeAnimation *animation = self.keyframeAnimations.lastObject;
         
         if (self.keyframeAnimations.count > 1) {
             MTKeyframeAnimation *lastAnimation = self.keyframeAnimations[self.keyframeAnimations.count - 2];
             
             animation = self.keyframeAnimations.lastObject;
             animation.delay(lastAnimation.duration + lastAnimation.beginTime);
-            animation.animate(i);
-        } else {
-            animation = self.keyframeAnimations.lastObject;
-            animation.animate(i);
         }
+        
+        animation.animate(i);
         
         // prepare for next animation
         MTKeyframeAnimation *newAnimation = [[MTKeyframeAnimation alloc] initWithAttribute:self.attribute];
@@ -237,15 +235,13 @@
 - (MTGroupChainableTimeInterval)delay
 {
     return MTGroupChainableTimeInterval(i) {
-        MTKeyframeAnimation *animation = nil;
+        MTKeyframeAnimation *animation = self.keyframeAnimations.lastObject;;
         
         if (self.keyframeAnimations.count > 1) {
             MTKeyframeAnimation *lastAnimation = self.keyframeAnimations[self.keyframeAnimations.count - 2];
             
-            animation = self.keyframeAnimations.lastObject;
             animation.delay(lastAnimation.duration + lastAnimation.beginTime + i);
         } else {
-            animation = self.keyframeAnimations.lastObject;
             animation.delay(i);
         }
         
@@ -256,20 +252,17 @@
 - (MTGroupChainableTimeInterval)animate
 {
     return MTGroupChainableTimeInterval(i) {
-        MTKeyframeAnimation *animation = nil;
+        MTKeyframeAnimation *animation = self.keyframeAnimations.lastObject;
         
         if (self.keyframeAnimations.count > 1) {
-            animation = self.keyframeAnimations.lastObject;
             CFTimeInterval delay = MAX(animation.beginTime - CACurrentMediaTime(), 0);
             
             MTKeyframeAnimation *lastAnimation = self.keyframeAnimations[self.keyframeAnimations.count - 2];
             
             animation.delay(lastAnimation.duration + delay);
-            animation.animate(i);
-        } else {
-            animation = self.keyframeAnimations.lastObject;
-            animation.animate(i);
         }
+        
+        animation.animate(i);
         
         return self;
     };

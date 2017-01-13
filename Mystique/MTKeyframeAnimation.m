@@ -498,7 +498,7 @@
         value = [NSValue valueWithCATransform3D:transform];
     }
     else if (self.attribute == MTAttributeXOffset && [value isKindOfClass:[NSNumber class]]) {
-        CGFloat newX = [self.fromValue floatValue] + [value floatValue];
+        CGFloat newX = self.layer.position.x + [value floatValue];
         value = @(newX);
     }
     else if (self.attribute == MTAttributeYOffset && [value isKindOfClass:[NSNumber class]]) {

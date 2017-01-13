@@ -50,10 +50,11 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeBounds];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
-        group.fromRect(self.targetView.bounds);
-        group.toRect(self.targetView.bounds);
+        CGRect bounds = self.targetView.layer.bounds;
+        group.mt_from(bounds);
+        group.mt_to(bounds);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             CGRect bounds = rectValueForAnimationCompletion(animation);
             
@@ -61,10 +62,11 @@
             view.bounds = bounds;
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
-        group.fromRect(self.targetLayer.bounds);
-        group.toRect(self.targetLayer.bounds);
+        CGRect bounds = self.targetLayer.bounds;
+        group.mt_from(bounds);
+        group.mt_to(bounds);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGRect bounds = rectValueForAnimationCompletion(animation);
             
@@ -80,12 +82,11 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeSize];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
-        CGFloat width = CGRectGetWidth(self.targetView.layer.bounds);
-        CGFloat height = CGRectGetHeight(self.targetView.layer.bounds);
-        group.fromSize(width, height);
-        group.toSize(width, height);
+        CGSize size = self.targetView.layer.bounds.size;
+        group.mt_from(size);
+        group.mt_to(size);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             CGSize size = sizeValueForAnimationCompletion(animation);
             CGRect bounds = CGRectMake(0, 0, size.width, size.height);
@@ -94,12 +95,11 @@
             view.bounds = bounds;
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
-        CGFloat width = CGRectGetWidth(self.targetLayer.bounds);
-        CGFloat height = CGRectGetHeight(self.targetLayer.bounds);
-        group.fromSize(width, height);
-        group.toSize(width, height);
+        CGSize size = self.targetLayer.bounds.size;
+        group.mt_from(size);
+        group.mt_to(size);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGSize size = sizeValueForAnimationCompletion(animation);
             CGRect bounds = CGRectMake(0, 0, size.width, size.height);
@@ -116,12 +116,11 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeOrigin];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
-        CGFloat x = CGRectGetMinX(self.targetView.layer.bounds);
-        CGFloat y = CGRectGetMinY(self.targetView.layer.bounds);
-        group.fromPoint(x, y);
-        group.toPoint(x, y);
+        CGPoint origin = self.targetView.layer.bounds.origin;
+        group.mt_from(origin);
+        group.mt_to(origin);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             CGPoint newOrigin = pointValueForAnimationCompletion(animation);
             CGPoint newPosition = newPositionFromNewOrigin(view.layer, newOrigin);;
@@ -129,12 +128,11 @@
             view.layer.position = newPosition;
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
-        CGFloat x = CGRectGetMinX(self.targetLayer.bounds);
-        CGFloat y = CGRectGetMinY(self.targetLayer.bounds);
-        group.fromPoint(x, y);
-        group.toPoint(x, y);
+        CGPoint origin = self.targetLayer.bounds.origin;
+        group.mt_from(origin);
+        group.mt_to(origin);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGPoint newOrigin = pointValueForAnimationCompletion(animation);
             CGPoint newPosition = newPositionFromNewOrigin(layer, newOrigin);;
@@ -151,24 +149,22 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeCenter];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
-        CGFloat x = self.targetView.layer.position.x;
-        CGFloat y = self.targetView.layer.position.y;
-        group.fromPoint(x, y);
-        group.toPoint(x, y);
+        CGPoint position = self.targetView.layer.position;
+        group.mt_from(position);
+        group.mt_to(position);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             CGPoint point = pointValueForAnimationCompletion(animation);
             
             view.center = point;
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
-        CGFloat x = self.targetLayer.position.x;
-        CGFloat y = self.targetLayer.position.y;
-        group.fromPoint(x, y);
-        group.toPoint(x, y);
+        CGPoint position = self.targetLayer.position;
+        group.mt_from(position);
+        group.mt_to(position);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGPoint point = pointValueForAnimationCompletion(animation);
             
@@ -185,7 +181,7 @@
     
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeX];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
         CGFloat x = self.targetView.layer.position.x;
         group.mt_from(x);
@@ -198,7 +194,7 @@
             view.layer.position = position;
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
         CGFloat x = self.targetLayer.position.x;
         group.mt_from(x);
@@ -221,7 +217,7 @@
     
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeY];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
         CGFloat y = self.targetView.layer.position.y;
         group.mt_from(y);
@@ -234,7 +230,7 @@
             view.layer.position = position;
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
         CGFloat y = self.targetLayer.position.y;
         group.mt_from(y);
@@ -257,27 +253,27 @@
     
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeWidth];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
-        CGFloat width = CGRectGetWidth(self.targetView.layer.bounds);
+        CGFloat width = self.targetView.layer.bounds.size.width;
         group.mt_from(width);
         group.mt_to(width);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             CGFloat width = floatValueForAnimationCompletion(animation);
-            CGRect bounds = CGRectMake(0, 0, width, CGRectGetHeight(view.bounds));
+            CGRect bounds = CGRectMake(0, 0, width, view.bounds.size.height);
             
             view.bounds = bounds;
             view.layer.bounds = bounds;
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
-        CGFloat width = CGRectGetWidth(self.targetLayer.bounds);
+        CGFloat width = self.targetLayer.bounds.size.width;
         group.mt_from(width);
         group.mt_to(width);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGFloat width = floatValueForAnimationCompletion(animation);
-            CGRect bounds = CGRectMake(0, 0, width, CGRectGetHeight(layer.bounds));
+            CGRect bounds = CGRectMake(0, 0, width, layer.bounds.size.height);
             
             layer.bounds = bounds;
         };
@@ -292,9 +288,9 @@
     
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeHeight];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
-        CGFloat height = CGRectGetHeight(self.targetView.layer.bounds);
+        CGFloat height = self.targetView.layer.bounds.size.height;
         group.mt_from(height);
         group.mt_to(height);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
@@ -305,9 +301,9 @@
             view.layer.bounds = bounds;
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
-        CGFloat height = CGRectGetHeight(self.targetLayer.bounds);
+        CGFloat height = self.targetLayer.bounds.size.height;
         group.mt_from(height);
         group.mt_to(height);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
@@ -326,17 +322,17 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeOpacity];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
-        CGFloat alpha = self.targetView.alpha;
-        group.mt_from(alpha);
-        group.mt_to(alpha);
+        CGFloat opacity = self.targetView.layer.opacity;
+        group.mt_from(opacity);
+        group.mt_to(opacity);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             CGFloat opacity = floatValueForAnimationCompletion(animation);
             view.layer.opacity = opacity;
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
         CGFloat opacity = self.targetLayer.opacity;
         group.mt_from(opacity);
@@ -355,12 +351,12 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeBackgroundColor];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
         UIColor *color = self.targetView.backgroundColor;
         self.targetView.layer.backgroundColor = color.CGColor;
-        group.fromColor(color);
-        group.toColor(color);
+        group.mt_from(color);
+        group.mt_to(color);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             UIColor *color = colorValueForAnimationCompletion(animation);
             
@@ -368,11 +364,11 @@
             view.layer.backgroundColor = color.CGColor;
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
         UIColor *color = [UIColor colorWithCGColor:self.targetLayer.backgroundColor];
-        group.fromColor(color);
-        group.toColor(color);
+        group.mt_from(color);
+        group.mt_to(color);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             UIColor *color = colorValueForAnimationCompletion(animation);
             
@@ -388,22 +384,22 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeBorderColor];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
         UIColor *color = [UIColor colorWithCGColor:self.targetView.layer.borderColor];
-        group.fromColor(color);
-        group.toColor(color);
+        group.mt_from(color);
+        group.mt_to(color);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             UIColor *color = colorValueForAnimationCompletion(animation);
             
             view.layer.borderColor = color.CGColor;
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
         UIColor *color = [UIColor colorWithCGColor:self.targetLayer.borderColor];
-        group.fromColor(color);
-        group.toColor(color);
+        group.mt_from(color);
+        group.mt_to(color);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             UIColor *color = colorValueForAnimationCompletion(animation);
             
@@ -420,7 +416,7 @@
     
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeBorderWidth];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
         CGFloat borderWidth = self.targetView.layer.borderWidth;
         group.mt_from(borderWidth);
@@ -431,7 +427,7 @@
             view.layer.borderWidth = borderWidth;
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
         CGFloat borderWidth = self.targetLayer.borderWidth;
         group.mt_from(borderWidth);
@@ -452,7 +448,7 @@
     
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeCornerRadius];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
         CGFloat cornerRadius = self.targetView.layer.cornerRadius;
         group.mt_from(cornerRadius);
@@ -463,7 +459,7 @@
             view.layer.cornerRadius = cornerRadius;
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
         CGFloat cornerRadius = self.targetLayer.cornerRadius;
         group.mt_from(cornerRadius);
@@ -483,7 +479,7 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeScale];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
         MTKeyframeAnimation *animation = group.keyframeAnimations.lastObject;
         NSValue *transform = [NSValue valueWithCATransform3D:self.targetView.layer.transform];
@@ -496,14 +492,13 @@
             view.layer.transform = transform;
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
         MTKeyframeAnimation *animation = group.keyframeAnimations.lastObject;
-        CATransform3D transform = self.targetLayer.transform;
-        CGFloat scale = transform.m11;
+        NSValue *transform = [NSValue valueWithCATransform3D:self.targetLayer.transform];
         
-        animation.fromValue = @(scale);
-        animation.toValue = @(scale);
+        animation.fromValue = transform;
+        animation.toValue = transform;
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGFloat f = floatValueForAnimationCompletion(animation);
             CATransform3D oriTransform = layer.transform;
@@ -521,7 +516,7 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeScaleX];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
         MTKeyframeAnimation *animation = group.keyframeAnimations.lastObject;
         NSValue *transform = [NSValue valueWithCATransform3D:self.targetView.layer.transform];
@@ -535,7 +530,7 @@
             view.layer.transform = transform;
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
         MTKeyframeAnimation *animation = group.keyframeAnimations.lastObject;
         NSValue *transform = [NSValue valueWithCATransform3D:self.targetLayer.transform];
@@ -558,7 +553,7 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeScaleY];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
         MTKeyframeAnimation *animation = group.keyframeAnimations.lastObject;
         NSValue *transform = [NSValue valueWithCATransform3D:self.targetView.layer.transform];
@@ -572,7 +567,7 @@
             view.layer.transform = transform;
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
         MTKeyframeAnimation *animation = group.keyframeAnimations.lastObject;
         NSValue *transform = [NSValue valueWithCATransform3D:self.targetLayer.transform];
@@ -595,23 +590,21 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeAnchor];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
-        CGFloat x = self.targetView.layer.anchorPoint.x;
-        CGFloat y = self.targetView.layer.anchorPoint.y;
-        
-        group.fromPoint(x, y);
-        group.toPoint(x, y);
+        CGPoint anchor = self.targetView.layer.anchorPoint;
+        group.mt_from(anchor);
+        group.mt_to(anchor);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             CGPoint anchorPoint = pointValueForAnimationCompletion(animation);
             
             if (CGPointEqualToPoint(anchorPoint, view.layer.anchorPoint)) {
                 return;
             }
-            CGPoint newPoint = CGPointMake(CGRectGetWidth(view.layer.bounds) * anchorPoint.x,
-                                           CGRectGetHeight(view.layer.bounds) * anchorPoint.y);
-            CGPoint oldPoint = CGPointMake(CGRectGetWidth(view.layer.bounds) * view.layer.anchorPoint.x,
-                                           CGRectGetHeight(view.layer.bounds) * view.layer.anchorPoint.y);
+            CGPoint newPoint = CGPointMake(view.bounds.size.width * anchorPoint.x,
+                                           view.bounds.size.height * anchorPoint.y);
+            CGPoint oldPoint = CGPointMake(view.bounds.size.width * view.layer.anchorPoint.x,
+                                           view.bounds.size.height * view.layer.anchorPoint.y);
             
             newPoint = CGPointApplyAffineTransform(newPoint, view.transform);
             oldPoint = CGPointApplyAffineTransform(oldPoint, view.transform);
@@ -628,23 +621,21 @@
             view.layer.anchorPoint = anchorPoint;
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
-        CGFloat x = self.targetLayer.anchorPoint.x;
-        CGFloat y = self.targetLayer.anchorPoint.y;
-        
-        group.fromPoint(x, y);
-        group.toPoint(x, y);
+        CGPoint anchor = self.targetLayer.anchorPoint;
+        group.mt_from(anchor);
+        group.mt_to(anchor);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGPoint anchorPoint = pointValueForAnimationCompletion(animation);
             
             if (CGPointEqualToPoint(anchorPoint, layer.anchorPoint)) {
                 return;
             }
-            CGPoint newPoint = CGPointMake(CGRectGetWidth(layer.bounds) * anchorPoint.x,
-                                           CGRectGetHeight(layer.bounds) * anchorPoint.y);
-            CGPoint oldPoint = CGPointMake(CGRectGetWidth(layer.bounds) * layer.anchorPoint.x,
-                                           CGRectGetHeight(layer.bounds) * layer.anchorPoint.y);
+            CGPoint newPoint = CGPointMake(layer.bounds.size.width * anchorPoint.x,
+                                           layer.bounds.size.height * anchorPoint.y);
+            CGPoint oldPoint = CGPointMake(layer.bounds.size.width * layer.anchorPoint.x,
+                                           layer.bounds.size.height * layer.anchorPoint.y);
             
             newPoint = CGPointApplyAffineTransform(newPoint, layer.affineTransform);
             oldPoint = CGPointApplyAffineTransform(oldPoint, layer.affineTransform);
@@ -670,24 +661,28 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeRotateX];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
         self.targetView.layer.allowsEdgeAntialiasing = YES;
         
-        group.mt_from(0.0);
-        group.mt_to(0.0);
+        CGFloat radians = atan2f(self.targetView.transform.b, self.targetView.transform.a);
+        CGFloat degrees = radians * (180 / M_PI);
+        group.mt_from(degrees);
+        group.mt_to(degrees);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             CGFloat value = floatValueForAnimationCompletion(animation);
             
             view.transform = CGAffineTransformMakeRotation(value);
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
         self.targetLayer.allowsEdgeAntialiasing = YES;
         
-        group.mt_from(0.0);
-        group.mt_to(0.0);
+        CGFloat radians = atan2f(self.targetLayer.affineTransform.b, self.targetLayer.affineTransform.a);
+        CGFloat degrees = radians * (180 / M_PI);
+        group.mt_from(degrees);
+        group.mt_to(degrees);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGFloat value = floatValueForAnimationCompletion(animation);
             
@@ -703,24 +698,28 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeRotateY];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
         self.targetView.layer.allowsEdgeAntialiasing = YES;
         
-        group.mt_from(0.0);
-        group.mt_to(0.0);
+        CGFloat radians = atan2f(self.targetView.transform.b, self.targetView.transform.a);
+        CGFloat degrees = radians * (180 / M_PI);
+        group.mt_from(degrees);
+        group.mt_to(degrees);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             CGFloat value = floatValueForAnimationCompletion(animation);
             
             view.transform = CGAffineTransformMakeRotation(value);
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
         self.targetLayer.allowsEdgeAntialiasing = YES;
         
-        group.mt_from(0.0);
-        group.mt_to(0.0);
+        CGFloat radians = atan2f(self.targetLayer.affineTransform.b, self.targetLayer.affineTransform.a);
+        CGFloat degrees = radians * (180 / M_PI);
+        group.mt_from(degrees);
+        group.mt_to(degrees);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGFloat value = floatValueForAnimationCompletion(animation);
             
@@ -736,24 +735,28 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeRotateZ];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
         self.targetView.layer.allowsEdgeAntialiasing = YES;
         
-        group.mt_from(0.0);
-        group.mt_to(0.0);
+        CGFloat radians = atan2f(self.targetView.transform.b, self.targetView.transform.a);
+        CGFloat degrees = radians * (180 / M_PI);
+        group.mt_from(degrees);
+        group.mt_to(degrees);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             CGFloat value = floatValueForAnimationCompletion(animation);
             
             view.transform = CGAffineTransformMakeRotation(value);
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
         self.targetLayer.allowsEdgeAntialiasing = YES;
         
-        group.mt_from(0.0);
-        group.mt_to(0.0);
+        CGFloat radians = atan2f(self.targetLayer.affineTransform.b, self.targetLayer.affineTransform.a);
+        CGFloat degrees = radians * (180 / M_PI);
+        group.mt_from(degrees);
+        group.mt_to(degrees);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGFloat value = floatValueForAnimationCompletion(animation);
             
@@ -774,7 +777,7 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeXOffset];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
         CGFloat x = self.targetView.layer.position.x;
         
@@ -788,7 +791,7 @@
             view.layer.position = position;
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
         CGFloat x = self.targetLayer.position.x;
         
@@ -811,7 +814,7 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeYOffset];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
         CGFloat y = self.targetView.layer.position.y;
         
@@ -825,7 +828,7 @@
             view.layer.position = position;
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
         CGFloat y = self.targetLayer.position.y;
         
@@ -848,7 +851,7 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeWidthOffset];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
         CGSize size = self.targetView.layer.bounds.size;
         
@@ -856,13 +859,13 @@
         group.mt_to(size.width);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             CGFloat width = floatValueForAnimationCompletion(animation);
-            CGRect bounds = CGRectMake(0, 0, width, CGRectGetHeight(view.layer.bounds));
+            CGRect bounds = CGRectMake(0, 0, width, view.bounds.size.height);
             
             view.bounds = bounds;
             view.layer.bounds = bounds;
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
         CGSize size = self.targetLayer.bounds.size;
         
@@ -870,7 +873,7 @@
         group.mt_to(size.width);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGFloat width = floatValueForAnimationCompletion(animation);
-            CGRect bounds = CGRectMake(0, 0, width, CGRectGetHeight(layer.bounds));
+            CGRect bounds = CGRectMake(0, 0, width, layer.bounds.size.height);
             
             layer.bounds = bounds;
         };
@@ -884,29 +887,29 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeHeightOffset];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
         CGSize size = self.targetView.layer.bounds.size;
         
         group.mt_from(size.height);
         group.mt_to(size.height);
         group.completionAction = MTAnimationCompletionAction(view, animation) {
-            CGFloat width = floatValueForAnimationCompletion(animation);
-            CGRect bounds = CGRectMake(0, 0, CGRectGetWidth(view.bounds), width);
+            CGFloat height = floatValueForAnimationCompletion(animation);
+            CGRect bounds = CGRectMake(0, 0, view.bounds.size.width, height);
             
             view.bounds = bounds;
             view.layer.bounds = bounds;
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
         CGSize size = self.targetLayer.bounds.size;
         
         group.mt_from(size.height);
         group.mt_to(size.height);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
-            CGFloat width = floatValueForAnimationCompletion(animation);
-            CGRect bounds = CGRectMake(0, 0, CGRectGetWidth(layer.bounds), width);
+            CGFloat height = floatValueForAnimationCompletion(animation);
+            CGRect bounds = CGRectMake(0, 0, layer.bounds.size.width, height);
             
             layer.bounds = bounds;
         };
@@ -920,22 +923,22 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeBezierPath];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             UIBezierPath *path = bezierPathForAnimationCompletion(animation);
             
-            if (!path) {
+            if (path) {
                 view.layer.position = path.currentPoint;
             }
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             UIBezierPath *path = bezierPathForAnimationCompletion(animation);
             
-            if (!path) {
+            if (path) {
                 layer.position = path.currentPoint;
             }
         };
@@ -950,22 +953,22 @@
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeBezierPath];
     group.keyframeAnimations.lastObject.rotationMode = kCAAnimationRotateAuto;
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             UIBezierPath *path = bezierPathForAnimationCompletion(animation);
             
-            if (!path) {
+            if (path) {
                 view.layer.position = path.currentPoint;
             }
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             UIBezierPath *path = bezierPathForAnimationCompletion(animation);
             
-            if (!path) {
+            if (path) {
                 layer.position = path.currentPoint;
             }
         };
@@ -980,22 +983,22 @@
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeBezierPath];
     group.keyframeAnimations.lastObject.rotationMode = kCAAnimationRotateAutoReverse;
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             UIBezierPath *path = bezierPathForAnimationCompletion(animation);
             
-            if (!path) {
+            if (path) {
                 view.layer.position = path.currentPoint;
             }
         };
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             UIBezierPath *path = bezierPathForAnimationCompletion(animation);
             
-            if (!path) {
+            if (path) {
                 layer.position = path.currentPoint;
             }
         };
@@ -1009,8 +1012,11 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeFillColor];
     
-    if (!self.targetLayer && [self.targetLayer isKindOfClass:[CAShapeLayer class]]) {
+    if (self.targetLayer && [self.targetLayer isKindOfClass:[CAShapeLayer class]]) {
         
+        CAShapeLayer *shapLayer = (CAShapeLayer *)self.targetLayer;
+        group.mt_from([UIColor colorWithCGColor:shapLayer.fillColor]);
+        group.mt_to([UIColor colorWithCGColor:shapLayer.fillColor]);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation) {
             UIColor *color = colorValueForAnimationCompletion(animation);
             
@@ -1029,8 +1035,11 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeStrokeColor];
     
-    if (!self.targetLayer && [self.targetLayer isKindOfClass:[CAShapeLayer class]]) {
+    if (self.targetLayer && [self.targetLayer isKindOfClass:[CAShapeLayer class]]) {
         
+        CAShapeLayer *shapLayer = (CAShapeLayer *)self.targetLayer;
+        group.mt_from([UIColor colorWithCGColor:shapLayer.strokeColor]);
+        group.mt_to([UIColor colorWithCGColor:shapLayer.strokeColor]);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation) {
             UIColor *color = colorValueForAnimationCompletion(animation);
             
@@ -1049,8 +1058,11 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeStrokeStart];
     
-    if (!self.targetLayer && [self.targetLayer isKindOfClass:[CAShapeLayer class]]) {
+    if (self.targetLayer && [self.targetLayer isKindOfClass:[CAShapeLayer class]]) {
         
+        CAShapeLayer *shapLayer = (CAShapeLayer *)self.targetLayer;
+        group.mt_from(shapLayer.strokeStart);
+        group.mt_to(shapLayer.strokeStart);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation) {
             CGFloat f = floatValueForAnimationCompletion(animation);
             
@@ -1067,8 +1079,11 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeStrokeEnd];
     
-    if (!self.targetLayer && [self.targetLayer isKindOfClass:[CAShapeLayer class]]) {
+    if (self.targetLayer && [self.targetLayer isKindOfClass:[CAShapeLayer class]]) {
         
+        CAShapeLayer *shapLayer = (CAShapeLayer *)self.targetLayer;
+        group.mt_from(shapLayer.strokeEnd);
+        group.mt_to(shapLayer.strokeEnd);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation) {
             CGFloat f = floatValueForAnimationCompletion(animation);
             
@@ -1087,8 +1102,11 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeLineWidth];
     
-    if (!self.targetLayer && [self.targetLayer isKindOfClass:[CAShapeLayer class]]) {
+    if (self.targetLayer && [self.targetLayer isKindOfClass:[CAShapeLayer class]]) {
         
+        CAShapeLayer *shapLayer = (CAShapeLayer *)self.targetLayer;
+        group.mt_from(shapLayer.lineWidth);
+        group.mt_to(shapLayer.lineWidth);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation) {
             CGFloat f = floatValueForAnimationCompletion(animation);
             
@@ -1107,8 +1125,11 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeMiterLimit];
     
-    if (!self.targetLayer && [self.targetLayer isKindOfClass:[CAShapeLayer class]]) {
+    if (self.targetLayer && [self.targetLayer isKindOfClass:[CAShapeLayer class]]) {
         
+        CAShapeLayer *shapLayer = (CAShapeLayer *)self.targetLayer;
+        group.mt_from(shapLayer.miterLimit);
+        group.mt_to(shapLayer.miterLimit);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation) {
             CGFloat f = floatValueForAnimationCompletion(animation);
             
@@ -1127,8 +1148,11 @@
 {
     MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeLineDashPhase];
     
-    if (!self.targetLayer && [self.targetLayer isKindOfClass:[CAShapeLayer class]]) {
+    if (self.targetLayer && [self.targetLayer isKindOfClass:[CAShapeLayer class]]) {
         
+        CAShapeLayer *shapLayer = (CAShapeLayer *)self.targetLayer;
+        group.mt_from(shapLayer.lineDashPhase);
+        group.mt_to(shapLayer.lineDashPhase);
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation) {
             CGFloat f = floatValueForAnimationCompletion(animation);
             
@@ -1159,11 +1183,11 @@
                 [self log:animation];
             }
             
-            if (!self.targetView) {
+            if (self.targetView) {
                 
                 [self.targetView.layer addAnimation:animation forKey:nil];
                 
-            } else if (!self.targetLayer) {
+            } else if (self.targetLayer) {
                 
                 [self.targetLayer addAnimation:animation forKey:nil];
                 
@@ -1185,7 +1209,7 @@
     if (action) {
         NSTimeInterval delay = MAX(animation.beginTime - CACurrentMediaTime(), 0.0);
         
-        if (!self.targetView) {
+        if (self.targetView) {
             
             __weak UIView *weakView = self.targetView;
             
@@ -1193,7 +1217,7 @@
                 action(weakView, animation);
             });
             
-        } else if (!self.targetLayer) {
+        } else if (self.targetLayer) {
             
             __weak CALayer *weakLayer = self.targetLayer;
             
@@ -1216,11 +1240,11 @@
 {
     MTAnimationGroup *group = [[MTAnimationGroup alloc] initWithAttribute:attribute];
     
-    if (!self.targetView) {
+    if (self.targetView) {
         
         group.layer = self.targetView.layer;
         
-    } else if (!self.targetLayer) {
+    } else if (self.targetLayer) {
         
         group.layer = self.targetLayer;
         
@@ -1233,7 +1257,7 @@
 
 - (void)log:(MTKeyframeAnimation *)animation
 {
-    if (!animation.fromValue && !animation.toValue) {
+    if (animation.fromValue && animation.toValue) {
         NSLog(@"keyPath: %@, fromValue: %@, toValue: %@, duration: %@", animation.keyPath, animation.fromValue, animation.toValue, @(animation.duration));
     } else {
         NSLog(@"keyPath: %@, values: %@, keyTimes: %@", animation.keyPath, animation.values, animation.keyTimes);
