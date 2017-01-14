@@ -448,23 +448,15 @@
         f = f / 180.0 * M_PI;
         value = @(f);
     }
-    else if (self.attribute == MTAttributeScale && [value isKindOfClass:[NSNumber class]]) {
+    else if ((self.attribute == MTAttributeScale ||
+              self.attribute == MTAttributeScaleX ||
+              self.attribute == MTAttributeScaleY ) && [value isKindOfClass:[NSNumber class]]) {
         CGFloat f = [value floatValue];
         if (fabs(f) < FLT_EPSILON) {
             f = FLT_EPSILON;
         }
         
         value = @(f);
-    }
-    else if (self.attribute == MTAttributeScaleX && [value isKindOfClass:[NSNumber class]]) {
-        CGFloat f = [value floatValue];
-        CATransform3D transform = CATransform3DMakeScale(f, 1, 1);
-        value = [NSValue valueWithCATransform3D:transform];
-    }
-    else if (self.attribute == MTAttributeScaleY && [value isKindOfClass:[NSNumber class]]) {
-        CGFloat f = [value floatValue];
-        CATransform3D transform = CATransform3DMakeScale(1, f, 1);
-        value = [NSValue valueWithCATransform3D:transform];
     }
     
     return value;
@@ -479,23 +471,15 @@
         f = f / 180.0 * M_PI;
         value = @(f);
     }
-    else if (self.attribute == MTAttributeScale && [value isKindOfClass:[NSNumber class]]) {
+    else if ((self.attribute == MTAttributeScale ||
+              self.attribute == MTAttributeScaleX ||
+              self.attribute == MTAttributeScaleY ) && [value isKindOfClass:[NSNumber class]]) {
         CGFloat f = [value floatValue];
         if (fabs(f) < FLT_EPSILON) {
             f = FLT_EPSILON;
         }
         
         value = @(f);
-    }
-    else if (self.attribute == MTAttributeScaleX && [value isKindOfClass:[NSNumber class]]) {
-        CGFloat f = [value floatValue];
-        CATransform3D transform = CATransform3DMakeScale(f, 1, 1);
-        value = [NSValue valueWithCATransform3D:transform];
-    }
-    else if (self.attribute == MTAttributeScaleY && [value isKindOfClass:[NSNumber class]]) {
-        CGFloat f = [value floatValue];
-        CATransform3D transform = CATransform3DMakeScale(1, f, 1);
-        value = [NSValue valueWithCATransform3D:transform];
     }
     else if (self.attribute == MTAttributeXOffset && [value isKindOfClass:[NSNumber class]]) {
         CGFloat newX = self.layer.position.x + [value floatValue];
