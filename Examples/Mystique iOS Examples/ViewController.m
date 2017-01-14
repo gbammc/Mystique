@@ -136,11 +136,6 @@
             [circle removeFromSuperlayer];
         }];
     }
-    
-    CAKeyframeAnimation *keyframeAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
-    keyframeAnimation.values = @[ @0.0, @1.1, @1.0 ];
-    keyframeAnimation.keyTimes = @[ @0.0, @0.5, @1.0 ];
-    keyframeAnimation.duration = duration;
 }
 
 @end

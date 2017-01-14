@@ -487,9 +487,15 @@
         animation.fromValue = transform;
         animation.toValue = transform;
         group.completionAction = MTAnimationCompletionAction(view, animation) {
-            CATransform3D transform = transformValueForAnimationCompletion(animation);
+            CGFloat f = floatValueForAnimationCompletion(animation);
+            CATransform3D oriTransform = view.layer.transform;
             
-            view.layer.transform = transform;
+            if (fabs(oriTransform.m11 - f) > FLT_EPSILON ||
+                fabs(oriTransform.m22 - f) > FLT_EPSILON) {
+                CATransform3D scaledTransform = CATransform3DMakeScale(f, f, 1);
+                
+                view.layer.transform = CATransform3DConcat(oriTransform, scaledTransform);
+            }
         };
         
     } else if (self.targetLayer) {
@@ -502,9 +508,13 @@
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             CGFloat f = floatValueForAnimationCompletion(animation);
             CATransform3D oriTransform = layer.transform;
-            CATransform3D scaledTransform = CATransform3DMakeScale(f, f, 1);
             
-            layer.transform = CATransform3DConcat(oriTransform, scaledTransform);
+            if (fabs(oriTransform.m11 - f) > FLT_EPSILON ||
+                fabs(oriTransform.m22 - f) > FLT_EPSILON) {
+                CATransform3D scaledTransform = CATransform3DMakeScale(f, f, 1);
+                
+                layer.transform = CATransform3DConcat(oriTransform, scaledTransform);
+            }
         };
         
     }
@@ -524,10 +534,14 @@
         animation.fromValue = transform;
         animation.toValue = transform;
         group.completionAction = MTAnimationCompletionAction(view, animation) {
-            CATransform3D transform = transformValueForAnimationCompletion(animation);
-            transform = CATransform3DMakeScale(transform.m11, view.layer.transform.m22, view.layer.transform.m33);
+            CGFloat f = floatValueForAnimationCompletion(animation);
+            CATransform3D oriTransform = view.layer.transform;
             
-            view.layer.transform = transform;
+            if (fabs(oriTransform.m11 - f) > FLT_EPSILON) {
+                CATransform3D scaledTransform = CATransform3DMakeScale(f, 1, 1);
+                
+                view.layer.transform = CATransform3DConcat(oriTransform, scaledTransform);
+            }
         };
         
     } else if (self.targetLayer) {
@@ -538,10 +552,14 @@
         animation.fromValue = transform;
         animation.toValue = transform;
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
-            CATransform3D transform = transformValueForAnimationCompletion(animation);
-            transform = CATransform3DMakeScale(transform.m11, layer.transform.m22, layer.transform.m33);
+            CGFloat f = floatValueForAnimationCompletion(animation);
+            CATransform3D oriTransform = layer.transform;
             
-            layer.transform = transform;
+            if (fabs(oriTransform.m11 - f) > FLT_EPSILON) {
+                CATransform3D scaledTransform = CATransform3DMakeScale(f, 1, 1);
+                
+                layer.transform = CATransform3DConcat(oriTransform, scaledTransform);
+            }
         };
         
     }
@@ -561,10 +579,14 @@
         animation.fromValue = transform;
         animation.toValue = transform;
         group.completionAction = MTAnimationCompletionAction(view, animation) {
-            CATransform3D transform = transformValueForAnimationCompletion(animation);
-            transform = CATransform3DMakeScale(view.layer.transform.m11, transform.m22, view.layer.transform.m33);
+            CGFloat f = floatValueForAnimationCompletion(animation);
+            CATransform3D oriTransform = view.layer.transform;
             
-            view.layer.transform = transform;
+            if (fabs(oriTransform.m22 - f) > FLT_EPSILON) {
+                CATransform3D scaledTransform = CATransform3DMakeScale(1, f, 1);
+                
+                view.layer.transform = CATransform3DConcat(oriTransform, scaledTransform);
+            }
         };
         
     } else if (self.targetLayer) {
@@ -575,10 +597,14 @@
         animation.fromValue = transform;
         animation.toValue = transform;
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
-            CATransform3D transform = transformValueForAnimationCompletion(animation);
-            transform = CATransform3DMakeScale(layer.transform.m11, transform.m22, layer.transform.m33);
+            CGFloat f = floatValueForAnimationCompletion(animation);
+            CATransform3D oriTransform = layer.transform;
             
-            layer.transform = transform;
+            if (fabs(oriTransform.m22 - f) > FLT_EPSILON) {
+                CATransform3D scaledTransform = CATransform3DMakeScale(1, f, 1);
+                
+                layer.transform = CATransform3DConcat(oriTransform, scaledTransform);
+            }
         };
         
     }
