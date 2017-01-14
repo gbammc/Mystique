@@ -1316,22 +1316,6 @@ static CGFloat floatValueForAnimationCompletion(MTKeyframeAnimation *animation)
     return result;
 }
 
-static CATransform3D transformValueForAnimationCompletion(MTKeyframeAnimation *animation)
-{
-    CATransform3D result = CATransform3DIdentity;
-    if (animation.toValue && [animation.toValue isKindOfClass:[NSNumber class]]) {
-        CGFloat scale = [animation.toValue floatValue];
-        result.m11 = scale;
-        result.m22 = scale;
-    } else if (animation.values.lastObject && [animation.values.lastObject isKindOfClass:[NSNumber class]]) {
-        CGFloat scale = [animation.values.lastObject floatValue];
-        result.m11 = scale;
-        result.m22 = scale;
-    }
-    
-    return result;
-}
-
 static CGSize sizeValueForAnimationCompletion(MTKeyframeAnimation *animation)
 {
     CGSize result = CGSizeZero;

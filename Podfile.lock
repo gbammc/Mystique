@@ -1,16 +1,16 @@
 PODS:
-  - Mystique (0.2.0)
+  - Mystique (0.2.1)
 
 DEPENDENCIES:
   - Mystique (from `./`)
 
 EXTERNAL SOURCES:
   Mystique:
-    :path: ./
+    :path: "./"
 
 SPEC CHECKSUMS:
-  Mystique: dd74a645a5049ae9fbbd13e2c0f68396a0acdfd0
+  Mystique: 114df68fbecef5bd9da720ed6f92d408ab1e916f
 
-PODFILE CHECKSUM: addeb323d3efb196f49aeb129811b49d37158cd3
+PODFILE CHECKSUM: 28af83b94b483bd001cbbf6300094e2ffe7d7460
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.2.0.beta.1
