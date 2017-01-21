@@ -1,5 +1,5 @@
 PODS:
-  - Mystique (0.2.1)
+  - Mystique (0.2.3)
 
 DEPENDENCIES:
   - Mystique (from `./`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "./"
 
 SPEC CHECKSUMS:
-  Mystique: 114df68fbecef5bd9da720ed6f92d408ab1e916f
+  Mystique: 40df842a6de5f0839736114e13aac04ff01b0c77
 
 PODFILE CHECKSUM: 28af83b94b483bd001cbbf6300094e2ffe7d7460
 

@@ -1,6 +1,6 @@
 # Mystique
 
-[![Version](https://img.shields.io/cocoapods/v/Mystique.svg?style=flat)](http://cocoapods.org/pods/Mystique) [![License](https://img.shields.io/cocoapods/l/Mystique.svg?style=flat)](http://cocoapods.org/pods/Mystique) [![Platform](https://img.shields.io/cocoapods/p/Mystique.svg?style=flat)](http://cocoapods.org/pods/Mystique)
+[![Version](https://img.shields.io/cocoapods/v/Mystique.svg?style=flat)](http://cocoapods.org/pods/Mystique) [![License](https://img.shields.io/cocoapods/l/Mystique.svg?style=flat)](http://cocoapods.org/pods/Mystique) [![Platform](https://img.shields.io/cocoapods/p/Mystique.svg?style=flat)](http://cocoapods.org/pods/Mystique) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) ![Xcode 8.2+](https://img.shields.io/badge/Xcode-8.2%2B-blue.svg) ![iOS 8.0+](https://img.shields.io/badge/iOS-8.0%2B-blue.svg)
 
 ## Introduction
 
@@ -64,10 +64,10 @@ pod "Mystique"
 ```swift
 // Compose your animations in here.
 [view mt_startAnimations:^(MTAnimator *animate) {
-    
+
     // Animate origin x to 100 in 1s.
     animate.x.to(@100.0).animate(1.0);
-    
+
     // Animate backgroundColor to red in 0.4s then change to yellow after 0.2s delay.
     animate.backgroundColor
         .to([UIColor redColor]).after(0.4)

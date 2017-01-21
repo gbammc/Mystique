@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'Mystique'
-  s.version  = '0.2.2'
+  s.version  = '0.2.3'
   s.license  = 'MIT'
   s.summary  = 'Helpers to create awsome animations.'
   s.homepage = 'https://github.com/gbammc/Mystique'
