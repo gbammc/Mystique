@@ -496,6 +496,8 @@
     else if (self.attribute == MTAttributeHeightOffset && [value isKindOfClass:[NSNumber class]]) {
         CGFloat newHeight = self.layer.bounds.size.height + [value floatValue];
         value = @(newHeight);
+    } else if (self.attribute == MTAttributeBezierPath && [value isKindOfClass:[UIBezierPath class]]) {
+        self.path = [(UIBezierPath *)value CGPath];
     }
     
     return value;

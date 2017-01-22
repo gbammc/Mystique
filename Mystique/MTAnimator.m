@@ -951,6 +951,8 @@
     
     if (self.targetView) {
         
+        self.targetView.layer.allowsEdgeAntialiasing = YES;
+        
         group.completionAction = MTAnimationCompletionAction(view, animation) {
             UIBezierPath *path = bezierPathForAnimationCompletion(animation);
             
@@ -960,6 +962,8 @@
         };
         
     } else if (self.targetLayer) {
+        
+        self.targetLayer.allowsEdgeAntialiasing = YES;
         
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             UIBezierPath *path = bezierPathForAnimationCompletion(animation);
@@ -976,60 +980,16 @@
 
 - (MTAnimationGroup *)rotateOnPath
 {
-    MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeBezierPath];
+    MTAnimationGroup *group = self.path;
     group.keyframeAnimations.lastObject.rotationMode = kCAAnimationRotateAuto;
-    
-    if (self.targetView) {
-        
-        group.completionAction = MTAnimationCompletionAction(view, animation) {
-            UIBezierPath *path = bezierPathForAnimationCompletion(animation);
-            
-            if (path) {
-                view.layer.position = path.currentPoint;
-            }
-        };
-        
-    } else if (self.targetLayer) {
-        
-        group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
-            UIBezierPath *path = bezierPathForAnimationCompletion(animation);
-            
-            if (path) {
-                layer.position = path.currentPoint;
-            }
-        };
-        
-    }
     
     return group;
 }
 
 - (MTAnimationGroup *)reverseRotateOnPath
 {
-    MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeBezierPath];
+    MTAnimationGroup *group = self.path;
     group.keyframeAnimations.lastObject.rotationMode = kCAAnimationRotateAutoReverse;
-    
-    if (self.targetView) {
-        
-        group.completionAction = MTAnimationCompletionAction(view, animation) {
-            UIBezierPath *path = bezierPathForAnimationCompletion(animation);
-            
-            if (path) {
-                view.layer.position = path.currentPoint;
-            }
-        };
-        
-    } else if (self.targetLayer) {
-        
-        group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
-            UIBezierPath *path = bezierPathForAnimationCompletion(animation);
-            
-            if (path) {
-                layer.position = path.currentPoint;
-            }
-        };
-        
-    }
     
     return group;
 }
@@ -1230,6 +1190,8 @@
     }
 }
 
+#pragma mark - Utilities
+
 - (void)executeCompletionAction:(MTAnimationCompletion)action animation:(MTKeyframeAnimation *)animation
 {
     if (action) {
@@ -1260,8 +1222,6 @@
     }
 }
 
-#pragma mark - Utilities
-
 - (MTAnimationGroup *)addAnimationGroupWithAttribute:(MTAttribute)attribute
 {
     MTAnimationGroup *group = [[MTAnimationGroup alloc] initWithAttribute:attribute];
@@ -1283,7 +1243,9 @@
 
 - (void)log:(MTKeyframeAnimation *)animation
 {
-    if (animation.fromValue && animation.toValue) {
+    if ([animation.toValue isKindOfClass:[UIBezierPath class]]) {
+        NSLog(@"keyPath: %@, currentPoint: %@, duration: %@", animation.keyPath, NSStringFromCGPoint([(UIBezierPath *)animation.toValue currentPoint]), @(animation.duration));
+    } else if (animation.fromValue && animation.toValue) {
         NSLog(@"keyPath: %@, fromValue: %@, toValue: %@, duration: %@", animation.keyPath, animation.fromValue, animation.toValue, @(animation.duration));
     } else {
         NSLog(@"keyPath: %@, values: %@, keyTimes: %@", animation.keyPath, animation.values, animation.keyTimes);

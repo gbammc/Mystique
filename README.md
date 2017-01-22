@@ -61,7 +61,7 @@ pod "Mystique"
 
 ### Basic usage
 
-```swift
+```objective-c
 // Compose your animations in here.
 [view mt_startAnimations:^(MTAnimator *animate) {
 
