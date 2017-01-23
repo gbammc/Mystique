@@ -13,12 +13,33 @@
 
 @interface MTAnimationGroup : CAAnimationGroup
 
+/**
+ The attribute that specify what kind of animation should be applied.
+ */
 @property (nonatomic, assign, readonly) MTAttribute attribute;
+
+/**
+ The array of the animations.
+ */
 @property (nonatomic, strong) NSMutableArray<MTKeyframeAnimation *> *keyframeAnimations;
+
+/**
+ The layer that apply the animations.
+ */
 @property (nonatomic, weak) CALayer *layer;
+
+/**
+ The block that executed after all animations are completed.
+ */
 @property (nonatomic, copy) MTAnimationCompletion completionAction;
 
-- (instancetype)initWithAttribute:(MTAttribute)attribute;
+/**
+ Initializes a new `MTAnimationGroup` object.
+
+ @param attribute Specify what kind of animation should be applied.
+ @return A new `MTAnimationGroup` object.
+ */
+- (instancetype)initWithAttribute:(MTAttribute)attribute NS_DESIGNATED_INITIALIZER;
 
 // Makers
 

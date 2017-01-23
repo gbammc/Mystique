@@ -15,14 +15,43 @@
 
 @interface MTKeyframeAnimation : CAKeyframeAnimation
 
-@property (nonatomic, weak) CALayer *layer;
+/**
+ The attribute that specify what kind of animation should be applied.
+ */
 @property (nonatomic, assign) MTAttribute attribute;
+
+/**
+ The layer that apply the animation.
+ */
+@property (nonatomic, weak) CALayer *layer;
+
+/**
+ The value that animation begin with.
+ */
 @property (nonatomic, strong) id fromValue;
+
+/**
+ The value that animation end up.
+ */
 @property (nonatomic, strong) id toValue;
+
+/**
+ The function block that effect apply with.
+ Default is linear.
+ */
 @property (nonatomic, copy) NSBKeyframeAnimationFunctionBlock functionBlock;
 
-- (instancetype)initWithAttribute:(MTAttribute)attribute;
+/**
+ Initializes a new `MTKeyframeAnimation` object.
+ 
+ @param attribute Specify what kind of animation should be applied.
+ @return A new `MTKeyframeAnimation` object.
+ */
+- (instancetype)initWithAttribute:(MTAttribute)attribute NS_DESIGNATED_INITIALIZER;
 
+/**
+ Calculate the values that needed in the animation.
+ */
 - (void)calculate;
 
 // Makers

@@ -13,6 +13,10 @@
 
 @interface MTAnimator : NSObject
 
+/**
+ Indicate whether to print the infomation about the animation or not. 
+ Defaults is NO.
+ */
 @property (nonatomic, assign) BOOL logEnable;
 
 // Animatable attributes
@@ -57,9 +61,27 @@
 @property (nonatomic, strong, readonly) MTAnimationGroup *miterLimit;
 @property (nonatomic, strong, readonly) MTAnimationGroup *lineDashPhase;
 
+/**
+ Initializes a new `MTAnimator` object.
+
+ @param view The view that will apply the animations.
+ @return A new `MTAnmator` object.
+ */
 - (instancetype)initWithView:(UIView *)view;
+
+/**
+ Initializes a new `MTAnimator` object.
+
+ @param layer The layer that will apply the animations.
+ @return A new `MTAnmator` object.
+ */
 - (instancetype)initWithLayer:(CALayer *)layer;
 
+/**
+ Begin the animations.
+
+ @param completion The block that will execute after all animations ended.
+ */
 - (void)animate:(void(^)(void))completion;
 
 @end
