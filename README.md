@@ -4,7 +4,7 @@
 
 ## Introduction
 
-Mystique wraps CoreAnimation with a nicer syntax to help you build up awesome animations.
+Mystique wraps CoreAnimation with a nicer syntax to help you build up awesome animations ([Swift version](https://github.com/gbammc/Morph)).
 
 ## Demo
 
