@@ -1153,7 +1153,7 @@
     return group;
 }
 
-#pragma mark - API
+#pragma mark - Public
 
 - (void)animate:(void (^)(void))completion
 {

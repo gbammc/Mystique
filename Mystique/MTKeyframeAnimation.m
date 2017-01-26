@@ -18,6 +18,11 @@
 
 #pragma mark - Lifecycle
 
+- (instancetype)init
+{
+    return [self initWithAttribute:MTAttributeNone];
+}
+
 - (instancetype)initWithAttribute:(MTAttribute)attribute
 {
     self = [super init];
@@ -401,6 +406,7 @@
 + (NSString *)keyPathForAttribute:(MTAttribute)attribute
 {
     switch (attribute) {
+        case MTAttributeNone:               return @"";
         case MTAttributeBounds:             return @"bounds";
         case MTAttributeSize:               return @"bounds.size";
         case MTAttributeOrigin:             return @"position";

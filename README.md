@@ -50,11 +50,21 @@ Check out the __Mystique iOS Examples__ to get more details.
 
 ## Installation
 
+### Cocoapods
+
 Mystique is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
 pod "Mystique"
+```
+
+### Carthage
+
+You can also use [Carthage](https://github.com/Carthage/Carthage) to install Mystique by adding that to your Cartfile:
+
+```ruby
+github "gbammc/Mystique"
 ```
 
 ## Getting started
@@ -94,20 +104,20 @@ pod "Mystique"
 | borderColor | borderColor |
 | borderWidth | borderWidth |
 | cornerRadius | cornerRadius |
-| scale | transform.scale |
-| scaleX | transform.scale.x |
-| scaleY | transform.scale.y |
 | anchor | anchorPoint |
-| rotateX | transform.rotation.x |
-| rotateY | transform.rotation.y |
-| rotateZ | transform.rotation.z |
-| rotate | transform.rotation.z |
 | path | position |
 
 #### Advance attributes
 
 | Attribute | keyPath | Description |
 |-----------|---------|-------------|
+| scale | transform.scale |  Idempotent |
+| scaleX | transform.scale.x | Idempotent |
+| scaleY | transform.scale.y | Idempotent |
+| rotateX | transform.rotation.x | Accept degree value. Idempotent |
+| rotateY | transform.rotation.y | Accept degree value. Idempotent |
+| rotateZ | transform.rotation.z | Accept degree value. Idempotent |
+| rotate | transform.rotation.z | The same as ```rotateZ``` |
 | xOffset | position.x | Increase / decrease origin x by specific value |
 | yOffset | position.y | Increase / decrease origin y by specific value |
 | heightOffset | bounds.size.width | Increase / decrease width by specific value |

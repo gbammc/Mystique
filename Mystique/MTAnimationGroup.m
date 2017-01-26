@@ -16,6 +16,11 @@
 
 @implementation MTAnimationGroup
 
+- (instancetype)init
+{
+    return [self initWithAttribute:MTAttributeNone];
+}
+
 - (instancetype)initWithAttribute:(MTAttribute)attribute
 {
     self = [super init];

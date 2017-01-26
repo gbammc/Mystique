@@ -11,7 +11,8 @@
 
 typedef NS_OPTIONS(NSUInteger, MTAttribute) {
     //
-    MTAttributeBounds = 0,
+    MTAttributeNone = 0,
+    MTAttributeBounds,
     MTAttributeSize,
     MTAttributeOrigin,
     MTAttributeCenter,
