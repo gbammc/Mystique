@@ -432,9 +432,10 @@
         case MTAttributeYOffset:            return @"position.y";
         case MTAttributeWidthOffset:        return @"bounds.size.width";
         case MTAttributeHeightOffset:       return @"bounds.size.height";
-            
-        case MTAttributeBezierPath:         return @"position";
-            
+        
+        case MTAttributePath:               return @"path";
+        case MTAttributePositionPath:       return @"position";
+        
         case MTAttributeFillColor:          return @"fillColor";
         case MTAttributeStrokeColor:        return @"strokeColor";
         case MTAttributeStrokeStart:        return @"strokeStart";
@@ -502,7 +503,9 @@
     else if (self.attribute == MTAttributeHeightOffset && [value isKindOfClass:[NSNumber class]]) {
         CGFloat newHeight = self.layer.bounds.size.height + [value floatValue];
         value = @(newHeight);
-    } else if (self.attribute == MTAttributeBezierPath && [value isKindOfClass:[UIBezierPath class]]) {
+    } else if (self.attribute == MTAttributePath && [value isKindOfClass:[UIBezierPath class]]) {
+        self.path = [(UIBezierPath *)value CGPath];
+    } else if (self.attribute == MTAttributePositionPath && [value isKindOfClass:[UIBezierPath class]]) {
         self.path = [(UIBezierPath *)value CGPath];
     }
     

@@ -947,7 +947,7 @@
 
 - (MTAnimationGroup *)path
 {
-    MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributeBezierPath];
+    MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributePath];
     
     if (self.targetView) {
         
@@ -968,7 +968,46 @@
         group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
             UIBezierPath *path = bezierPathForAnimationCompletion(animation);
             
+            if ([layer isKindOfClass:[CAShapeLayer class]]) {
+                CAShapeLayer *shareLayer = (CAShapeLayer *)layer;
+                shareLayer.path = path.CGPath;
+            } else if (path) {
+                layer.position = path.currentPoint;
+            }
+        };
+        
+    }
+    
+    return group;
+}
+
+- (MTAnimationGroup *)positionPath
+{
+    MTAnimationGroup *group = [self addAnimationGroupWithAttribute:MTAttributePositionPath];
+    
+    if (self.targetView) {
+        
+        self.targetView.layer.allowsEdgeAntialiasing = YES;
+        
+        group.completionAction = MTAnimationCompletionAction(view, animation) {
+            UIBezierPath *path = bezierPathForAnimationCompletion(animation);
+            
             if (path) {
+                view.layer.position = path.currentPoint;
+            }
+        };
+        
+    } else if (self.targetLayer) {
+        
+        self.targetLayer.allowsEdgeAntialiasing = YES;
+        
+        group.completionAction = MTLayerAnimationCompletionAction(layer, animation ) {
+            UIBezierPath *path = bezierPathForAnimationCompletion(animation);
+            
+            if ([layer isKindOfClass:[CAShapeLayer class]]) {
+                CAShapeLayer *shareLayer = (CAShapeLayer *)layer;
+                shareLayer.path = path.CGPath;
+            } else if (path) {
                 layer.position = path.currentPoint;
             }
         };
@@ -1153,7 +1192,7 @@
     return group;
 }
 
-#pragma mark - Public
+#pragma mark - API
 
 - (void)animate:(void (^)(void))completion
 {
@@ -1331,6 +1370,8 @@ static UIBezierPath *bezierPathForAnimationCompletion(MTKeyframeAnimation *anima
     UIBezierPath *result = nil;
     if (animation.toValue && [animation.toValue isKindOfClass:[UIBezierPath class]]) {
         result = (UIBezierPath *)animation.toValue;
+    } else if (animation.values.lastObject) {
+        result = [UIBezierPath bezierPathWithCGPath:(CGPathRef)animation.values.lastObject];
     }
     
     return result;

@@ -49,6 +49,7 @@
 
 // Bezier Paths
 @property (nonatomic, strong, readonly) MTAnimationGroup *path;
+@property (nonatomic, strong, readonly) MTAnimationGroup *positionPath;
 @property (nonatomic, strong, readonly) MTAnimationGroup *rotateOnPath;
 @property (nonatomic, strong, readonly) MTAnimationGroup *reverseRotateOnPath;
 

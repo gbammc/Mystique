@@ -32,7 +32,8 @@ typedef NS_OPTIONS(NSUInteger, MTAttribute) {
     MTAttributeRotateX,
     MTAttributeRotateY,
     MTAttributeRotateZ,
-    MTAttributeBezierPath,
+    MTAttributePath,
+    MTAttributePositionPath,
     
     //
     MTAttributeXOffset,
