@@ -526,27 +526,32 @@
         } else if ([self.fromValue isKindOfClass:[UIColor class]] && [self.toValue isKindOfClass:[UIColor class]]) {
             const CGFloat *fromComponents = CGColorGetComponents(((UIColor*)self.fromValue).CGColor);
             const CGFloat *toComponents = CGColorGetComponents(((UIColor*)self.toValue).CGColor);
-            self.values = [self createColorArrayFromRed:
-                           [self valueArrayForStartValue:fromComponents[0] endValue:toComponents[0]]
-                                                  green:
-                           [self valueArrayForStartValue:fromComponents[1] endValue:toComponents[1]]
-                                                   blue:
-                           [self valueArrayForStartValue:fromComponents[2] endValue:toComponents[2]]
-                                                  alpha:
-                           [self valueArrayForStartValue:fromComponents[3] endValue:toComponents[3]]];
+            
+            NSInteger fromColorNumberOfComponents = CGColorGetNumberOfComponents(((UIColor*)self.fromValue).CGColor);
+            NSInteger toColorNumberOfComponents = CGColorGetNumberOfComponents(((UIColor*)self.toValue).CGColor);
+            
+            CGFloat(^colorComponents)(CGFloat *, NSInteger, NSInteger) = ^(CGFloat * components, NSInteger numberOfComponents, NSInteger idx) {
+                if (numberOfComponents == 2) {
+                    return idx == 3 ? components[1] : components[0];
+                } else {
+                    return components[idx];
+                }
+            };
+            
+            self.values = [self createColorArrayFromRed:[self valueArrayForStartValue:colorComponents(fromComponents, fromColorNumberOfComponents, 0) endValue:colorComponents(toComponents, toColorNumberOfComponents, 0)]
+                                                  green:[self valueArrayForStartValue:colorComponents(fromComponents, fromColorNumberOfComponents, 1) endValue:colorComponents(toComponents, toColorNumberOfComponents, 1)]
+                                                   blue:[self valueArrayForStartValue:colorComponents(fromComponents, fromColorNumberOfComponents, 2) endValue:colorComponents(toComponents, toColorNumberOfComponents, 2)]
+                                                  alpha:[self valueArrayForStartValue:colorComponents(fromComponents, fromColorNumberOfComponents, 3) endValue:colorComponents(toComponents, toColorNumberOfComponents, 3)]];
+            
         } else if ([self.fromValue isKindOfClass:[NSValue class]] && [self.toValue isKindOfClass:[NSValue class]]) {
             NSString *valueType = [NSString stringWithCString:[self.fromValue objCType] encoding:NSStringEncodingConversionAllowLossy];
             if ([valueType rangeOfString:@"CGRect"].location == 1) {
                 CGRect fromRect = [self.fromValue CGRectValue];
                 CGRect toRect = [self.toValue CGRectValue];
-                self.values = [self createRectArrayFromXValues:
-                               [self valueArrayForStartValue:fromRect.origin.x endValue:toRect.origin.x]
-                                                       yValues:
-                               [self valueArrayForStartValue:fromRect.origin.y endValue:toRect.origin.y]
-                                                        widths:
-                               [self valueArrayForStartValue:fromRect.size.width endValue:toRect.size.width]
-                                                       heights:
-                               [self valueArrayForStartValue:fromRect.size.height endValue:toRect.size.height]];
+                self.values = [self createRectArrayFromXValues:[self valueArrayForStartValue:fromRect.origin.x endValue:toRect.origin.x]
+                                                       yValues:[self valueArrayForStartValue:fromRect.origin.y endValue:toRect.origin.y]
+                                                        widths:[self valueArrayForStartValue:fromRect.size.width endValue:toRect.size.width]
+                                                       heights:[self valueArrayForStartValue:fromRect.size.height endValue:toRect.size.height]];
                 
             } else if ([valueType rangeOfString:@"CGPoint"].location == 1) {
                 CGPoint fromPoint = [self.fromValue CGPointValue];
@@ -559,38 +564,25 @@
                 CATransform3D fromTransform = [self.fromValue CATransform3DValue];
                 CATransform3D toTransform = [self.toValue CATransform3DValue];
                 
-                self.values = [self createTransformArrayFromM11:
-                               [self valueArrayForStartValue:fromTransform.m11 endValue:toTransform.m11]
-                                                            M12:
-                               [self valueArrayForStartValue:fromTransform.m12 endValue:toTransform.m12]
-                                                            M13:
-                               [self valueArrayForStartValue:fromTransform.m13 endValue:toTransform.m13]
-                                                            M14:
-                               [self valueArrayForStartValue:fromTransform.m14 endValue:toTransform.m14]
-                                                            M21:
-                               [self valueArrayForStartValue:fromTransform.m21 endValue:toTransform.m21]
-                                                            M22:
-                               [self valueArrayForStartValue:fromTransform.m22 endValue:toTransform.m22]
-                                                            M23:
-                               [self valueArrayForStartValue:fromTransform.m23 endValue:toTransform.m23]
-                                                            M24:
-                               [self valueArrayForStartValue:fromTransform.m24 endValue:toTransform.m24]
-                                                            M31:
-                               [self valueArrayForStartValue:fromTransform.m31 endValue:toTransform.m31]
-                                                            M32:
-                               [self valueArrayForStartValue:fromTransform.m32 endValue:toTransform.m32]
-                                                            M33:
-                               [self valueArrayForStartValue:fromTransform.m33 endValue:toTransform.m33]
-                                                            M34:
-                               [self valueArrayForStartValue:fromTransform.m34 endValue:toTransform.m34]
-                                                            M41:
-                               [self valueArrayForStartValue:fromTransform.m41 endValue:toTransform.m41]
-                                                            M42:
-                               [self valueArrayForStartValue:fromTransform.m42 endValue:toTransform.m42]
-                                                            M43:
-                               [self valueArrayForStartValue:fromTransform.m43 endValue:toTransform.m43]
-                                                            M44:
-                               [self valueArrayForStartValue:fromTransform.m44 endValue:toTransform.m44]
+                self.values = [self createTransformArrayFromM11:[self valueArrayForStartValue:fromTransform.m11 endValue:toTransform.m11]
+                                                            M12:[self valueArrayForStartValue:fromTransform.m12 endValue:toTransform.m12]
+                                                            M13:[self valueArrayForStartValue:fromTransform.m13 endValue:toTransform.m13]
+                                                            M14:[self valueArrayForStartValue:fromTransform.m14 endValue:toTransform.m14]
+                               
+                                                            M21:[self valueArrayForStartValue:fromTransform.m21 endValue:toTransform.m21]
+                                                            M22:[self valueArrayForStartValue:fromTransform.m22 endValue:toTransform.m22]
+                                                            M23:[self valueArrayForStartValue:fromTransform.m23 endValue:toTransform.m23]
+                                                            M24:[self valueArrayForStartValue:fromTransform.m24 endValue:toTransform.m24]
+                               
+                                                            M31:[self valueArrayForStartValue:fromTransform.m31 endValue:toTransform.m31]
+                                                            M32:[self valueArrayForStartValue:fromTransform.m32 endValue:toTransform.m32]
+                                                            M33:[self valueArrayForStartValue:fromTransform.m33 endValue:toTransform.m33]
+                                                            M34:[self valueArrayForStartValue:fromTransform.m34 endValue:toTransform.m34]
+                               
+                                                            M41:[self valueArrayForStartValue:fromTransform.m41 endValue:toTransform.m41]
+                                                            M42:[self valueArrayForStartValue:fromTransform.m42 endValue:toTransform.m42]
+                                                            M43:[self valueArrayForStartValue:fromTransform.m43 endValue:toTransform.m43]
+                                                            M44:[self valueArrayForStartValue:fromTransform.m44 endValue:toTransform.m44]
                                ];
             } else if ([valueType rangeOfString:@"CGSize"].location == 1) {
                 CGSize fromSize = [self.fromValue CGSizeValue];
