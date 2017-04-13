@@ -530,7 +530,7 @@
             NSInteger fromColorNumberOfComponents = CGColorGetNumberOfComponents(((UIColor*)self.fromValue).CGColor);
             NSInteger toColorNumberOfComponents = CGColorGetNumberOfComponents(((UIColor*)self.toValue).CGColor);
             
-            CGFloat(^colorComponents)(CGFloat *, NSInteger, NSInteger) = ^(CGFloat * components, NSInteger numberOfComponents, NSInteger idx) {
+            CGFloat(^colorComponents)(const CGFloat *, NSInteger, NSInteger) = ^(const CGFloat * components, NSInteger numberOfComponents, NSInteger idx) {
                 if (numberOfComponents == 2) {
                     return idx == 3 ? components[1] : components[0];
                 } else {
